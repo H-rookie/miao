@@ -97,54 +97,50 @@
     <input type="submit" value="在新窗口打开搜索结果">
     <hr>
     <p>个人信息调查表</p>
-    性别
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <label>
-      <input type="radio" name="" id="">男
-    </label>
-    <label>
-      <input type="radio" name="" id="">女
-    </label>
-
-    <br>
-    年龄
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <select name="" id="">
-      <optgroup label="少年" value="请选择">
-        <option value="1到6岁">1到6岁</option>
-        <option value="6到11岁">6到11岁</option>
-        <option value="6到11岁" hidden selected>请选择</option>
-      </optgroup>
-      <optgroup label="青年" value="请选择">
-        <option value="1到6岁">1到6岁</option>
-        <option value="6到11岁">6到11岁</option>
-      </optgroup>
-      <optgroup label="少年" value="请选择">
-        <option value="1到6岁">1到6岁</option>
-        <option value="6到11岁">6到11岁</option>
-      </optgroup>
-    </select>
-
-    <br>
-    生日
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <br>
-    生辰
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-    <br>
-    照片
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <label>
-      <input type="file" name="" id="" hidden>点我上传照片，我比文件上传按钮好看
-    </label>
-
-    <br>
-    自我介绍
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <textarea name="" id="" cols="30" rows="10">&lt;/textarea>></textarea>
+    <dl>
+      <dt>性别</dt>
+      <dd>
+        <label>
+          <input type="radio" name="" id="">男
+        </label>
+        <label>
+          <input type="radio" name="" id="">女
+        </label>
+      <dt>年龄</dt>
+      <dd>
+        <select name="" id="">
+          <optgroup label="少年" value="请选择">
+            <option value="1到6岁">1到6岁</option>
+            <option value="6到11岁">6到11岁</option>
+            <option value="6到11岁" hidden selected>请选择</option>
+          </optgroup>
+          <optgroup label="青年" value="请选择">
+            <option value="1到6岁">1到6岁</option>
+            <option value="6到11岁">6到11岁</option>
+          </optgroup>
+          <optgroup label="少年" value="请选择">
+            <option value="1到6岁">1到6岁</option>
+            <option value="6到11岁">6到11岁</option>
+          </optgroup>
+        </select>      <dt>生日</dt>
+      <dd>
+        <input type="date" value="2021-11-04" >
+      </dd>
+      <dt>生辰</dt>
+      <dd>
+        <input type="time" >
+      </dd>
+      <dt>照片</dt>
+      <dd>
+        <label>
+          <input type="file" name="" id="" hidden>点我上传照片，我比文件上传按钮好看
+        </label>
+      </dd>
+      <dt>自我介绍</dt>
+      <dd>
+        <textarea name="" id="" cols="30" rows="10">&lt;/textarea>></textarea>
+      </dd>
+    </dl>
 
     <fieldset disabled>
       <legend>这里全部禁用了</legend>
