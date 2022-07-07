@@ -22,7 +22,7 @@
   <a href="https://www.jd.com/">在新窗口打开京东</a>
   <a href="mailto:111@qq.com">点我发邮件</a>
   <a href="#p">跳到页面底部</a>
-  <a href="https://www.baidu.com/favicon.ico" download>点我下载文件</a>
+  <a href="" download="./favicon.ico">点我下载文件</a>
 
 
   <br>
@@ -92,54 +92,64 @@
 
   <h2>Google搜索</h2>
 
-  <form action="https://www.baidu.com/s" target="_blank">
-    <input type="text" name="wd">
+
+  <form action=" https://www.google.com.hk/search" target="_blank">
+    <input type="text" name="q">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="hidden" name="sourceid" value="UTF">
     <input type="submit" value="在新窗口打开搜索结果">
+  </form>
+
+
     <hr>
+
+  <form>
     <p>个人信息调查表</p>
     <dl>
       <dt>性别</dt>
       <dd>
         <label>
-          <input type="radio" name="" id="">男
+          <input type="radio" name="gender" id="" value="male">男
         </label>
         <label>
-          <input type="radio" name="" id="">女
+          <input type="radio" name="gender" id="" value="famale">女
         </label>
+
       <dt>年龄</dt>
       <dd>
-        <select name="" id="">
-          <optgroup label="少年" value="请选择">
+        <select name="age" id="">
+          <optgroup label="少年">
             <option value="1到6岁">1到6岁</option>
             <option value="6到11岁">6到11岁</option>
             <option value="6到11岁" hidden selected>请选择</option>
           </optgroup>
-          <optgroup label="青年" value="请选择">
+          <optgroup label="青年">
             <option value="1到6岁">1到6岁</option>
             <option value="6到11岁">6到11岁</option>
           </optgroup>
-          <optgroup label="少年" value="请选择">
+          <optgroup label="少年">
             <option value="1到6岁">1到6岁</option>
             <option value="6到11岁">6到11岁</option>
           </optgroup>
         </select>
+
       <dt>生日</dt>
       <dd>
-        <input type="date" value="2021-11-04">
+        <input type="date" value="2021-11-04" name="birthday">
       </dd>
       <dt>生辰</dt>
       <dd>
-        <input type="time">
+        <input type="time" name="birthtime">
       </dd>
       <dt>照片</dt>
       <dd>
         <label>
-          <input type="file" name="" id="" hidden>点我上传照片，我比文件上传按钮好看
+          <input type="file" name="picture" id="" hidden>点我上传照片，我比文件上传按钮好看
         </label>
       </dd>
       <dt>自我介绍</dt>
       <dd>
-        <textarea name="" id="" cols="30" rows="10">&lt;/textarea>></textarea>
+        <textarea name="self-info" id="" cols="30" rows="10">&lt;/textarea>></textarea>
       </dd>
     </dl>
 
@@ -151,8 +161,8 @@
       <input type="text">
 
     </fieldset>
-    <input type="submit" value="提交">
-    <input type="reset" value="重置">
+    <button>提交</button>
+    <button type="reset">重置</button>
 
   </form>
 
@@ -201,7 +211,7 @@
   <img src="./2.jpg" alt="" width="300px" height="450px" usemap="#map1">
 
   <map name="map1">
-    <area shape="circle" coords="170,300,180" href="https://www.jd.com/" alt="" target="_blank">
+    <area shape="circle" coords="170,300,180" href="https://www.jd.com/" alt="" target="_blank"  tabindex="1">
   </map>
   <hr>
 
