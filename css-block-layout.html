@@ -58,6 +58,41 @@
       margin-top: -220px;
     }
 
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 600px;
+      margin: auto;
+      font-size: 0;
+    }
+
+    li {
+      display: inline-block;
+      width: 180px;
+      height: 40px;
+      background-color: lightblue;
+
+      margin-bottom: 15px;
+
+
+
+      border: 2px solid #000;
+      box-sizing: border-box;
+      font-size: 16px;
+      line-height: 40px;
+      text-align: center;
+    }
+
+    li:hover {
+      background-color: yellow;
+    }
+
+    .product1 ul li:not(:nth-child(3n)) {
+      margin-right: 30px;
+    }
+
+
+
     .link {
       width: 600px;
       margin: auto;
@@ -97,6 +132,23 @@
     <article>产品</article>
     <article>产品</article>
     <article>产品</article>
+  </div>
+
+  <div class="product1">
+    <ul>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+      <li>产品</li>
+    </ul>
   </div>
 
   <div class="b">
