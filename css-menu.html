@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .menu {
+      padding: .5em;
+    }
+
+    .menu > li {
+      display: inline-block;
+    }
+
+    .menu li {
+      position: relative;
+      white-space: nowrap;
+      padding: .5em;
+    }
+
+    .menu ul {
+      position: absolute;
+      display: none;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      box-shadow: 0 0 5px #333;
+      border-radius: .3em;
+    }
+
+    .menu ul ul {
+      left: 100%;
+      top: 0;
+    }
+
+    .menu li:hover > ul {
+      display: block;
+    }
+
+    .menu,
+    .menu ul {
+      color: #c4c4c4;
+      background-color: #3c3c3c;
+    }
+
+    .menu li:hover {
+      background-color: lightcyan;
+    }
+
+    .menu ul li {
+      padding: 0 100px 0 10px;
+    }
+
+    .menu li li > span {
+      position: absolute;
+      right: 10px;
+      top: 0;
+    }
+
+    .menu hr {
+      margin-left: -10px;
+      margin-right: -100px;
+      border: none;
+      border-bottom: 1px solid #c4c4c4;
+    }
+  </style>
+</head>
+<body>
+  <ul class="menu">
+    <li>文件
+      <ul>
+        <li>打开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span>Ctrl+0</span>
+        </li>
+        <li><hr></li>
+        <li>保存
+          <ul>
+            <li>utf-8</li>
+            <li>gb2312
+              <ul>
+                <li>utf-8</li>
+                <li>gb2312
+                  <ul>
+                    <li>utf-8</li>
+                    <li>gb2312
+                      <ul>
+                        <li>utf-8</li>
+                        <li>gb2312</li>
+                        <li>其他</li>
+                      </ul>
+                    </li>
+                    <li>其他</li>
+                  </ul>
+                </li>
+                <li>其他</li>
+              </ul>
+            </li>
+            <li>其他</li>
+          </ul>
+        </li>
+        <li>另存为</li>
+        <li>其他</li>
+      </ul>
+    </li>
+    <li>编辑</li>
+    <li>选择</li>
+    <li>查看</li>
+  </ul>
+</body>
+</html>
