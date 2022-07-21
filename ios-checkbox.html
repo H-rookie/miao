@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    input {
+      display: none;
+    }
+
+    .ios {
+      display: block;
+      width: 270px;
+      height: 130px;
+      border: 3px solid #cbcbcb;
+      border-radius: 75px;
+      padding: 7px;
+      margin: auto;
+    }
+
+    .ios span {
+      display: inline-block;
+      width: 130px;
+      height: 130px;
+      background-color: #fff;
+      box-shadow: 0 0 40px #cfcfcf;
+      border-radius: 70px;
+
+      transition: 0.5s;
+    }
+
+    input:checked + .ios span{
+      margin-left: 140px;
+    }
+
+    input:checked + .ios {
+      background-color: #30f34d;
+      border-color: #30f34d;
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="ck1">
+  <label class="ios" for="ck1">
+    <span></span>
+  </label>
+</body>
+<script src="less.js"></script>
+</html>

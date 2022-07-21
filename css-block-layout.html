@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
+  <style type="text/less">
     body {
       margin: 0;
       padding: 0;
@@ -32,7 +32,7 @@
       margin: auto;
     }
 
-    article {
+    .product article {
       width: 180px;
       height: 40px;
       background-color: #ffc0cb;
@@ -41,36 +41,38 @@
       text-align: center;
       line-height: 36px;
       margin-bottom: 15px;
-    }
 
-    article:hover {
+      &:hover {
       background-color: #008080;
-    }
-    article:nth-child(n+5) {
+      }
+
+      &:nth-child(n+5) {
       margin-left: 210px;
-    }
+      }
 
-    article:nth-child(n+9) {
+      &:nth-child(n+9) {
       margin-left: 420px;
-    }
+      }
 
-    article:nth-child(4n+5) {
+      &:nth-child(4n+5) {
       margin-top: -220px;
+      }
     }
 
-    ul {
+
+    .product ul,
+    .product1 ul {
       list-style: none;
       padding: 0;
       width: 600px;
       margin: auto;
       font-size: 0;
-    }
 
-    li {
+      li {
       display: inline-block;
       width: 180px;
       height: 40px;
-      background-color: lightblue;
+      background-color: lightcyan;
 
       margin-bottom: 15px;
 
@@ -81,17 +83,16 @@
       font-size: 16px;
       line-height: 40px;
       text-align: center;
-    }
 
-    li:hover {
-      background-color: yellow;
-    }
+      &:hover {
+      background-color: rgba(146, 0, 250, 0.911);
+      }
 
-    .product1 ul li:not(:nth-child(3n)) {
+      &:not(:nth-child(3n)) {
       margin-right: 30px;
+      }
+      }
     }
-
-
 
     .link {
       width: 600px;
@@ -108,6 +109,30 @@
       background-color: magenta;
       text-align: center;
     }
+
+    .product2  {
+      display: flex;
+      height: 205px;
+      width: 600px;
+      flex-wrap: wrap;
+      gap: 15px 30px;
+
+      text-align: center;
+      line-height: 40px;
+      margin: auto;
+
+      article {
+        width: 180px;
+        height: 40px;
+        background-color: pink;
+        border: 2px solid #000;
+        box-sizing: border-box;
+
+        &:hover {
+          background-color: #008080;
+        }
+    }
+   }
   </style>
 </head>
 <body>
@@ -136,10 +161,10 @@
 
   <div class="product1">
     <ul>
-      <li>产品</li>
-      <li>产品</li>
-      <li>产品</li>
-      <li>产品</li>
+      <li>bottom:15px</li>
+      <li>right:30px</li>
+      <li>width:180px</li>
+      <li>height:40px</li>
       <li>产品</li>
       <li>产品</li>
       <li>产品</li>
@@ -149,6 +174,21 @@
       <li>产品</li>
       <li>产品</li>
     </ul>
+  </div>
+
+  <div class="product2">
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
+    <article>产品</article>
   </div>
 
   <div class="b">
@@ -164,4 +204,5 @@
         本页所有布局均使用块元素</p>
   </footer>
 </body>
+<script src="./less.js"></script>
 </html>

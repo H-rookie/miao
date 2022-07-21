@@ -28,6 +28,8 @@
 
     .menu ul {
       position: absolute;
+      top: 100%;
+      left: 0;
       display: none;
       padding-top: .5em;
       padding-bottom: .5em;
@@ -36,6 +38,7 @@
     }
 
     .menu ul ul {
+      position: absolute;
       left: 100%;
       top: 0;
     }
@@ -69,6 +72,22 @@
       margin-right: -100px;
       border: none;
       border-bottom: 1px solid #c4c4c4;
+    }
+
+    .menu ul li {
+      display: none;
+    }
+
+    .menu li:hover > ul > li {
+      display: block;
+    }
+
+    .menu ul ul::before {
+      content: '>';
+      position: absolute;
+      top: 0;
+      left: -20px;
+      color: #c4c4c4;
     }
   </style>
 </head>
