@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    .table {
+      border-collapse: collapse;
+      width: 100%;
+
+      thead > tr:first-child  {
+        text-align: left;
+        border-top: none;
+      }
+
+      tr {
+        border: 1px solid #dee2e6;
+        border-width: 1px 0;
+      }
+
+      td,th {
+        padding: 13px;
+      }
+
+      .row {
+        text-align: left;
+      }
+    }
+
+    .table-sm {
+      td,th {
+        padding: 5px;
+      }
+    }
+
+    .table-striped {
+      tbody tr:nth-child(2n+1) {
+        background-color: #f2f2f2;
+      }
+    }
+
+    .table-striped-column {
+      thead tr :nth-child(2n),
+      tbody tr :nth-child(2n) {
+        background-color: #f2f2f2;
+      }
+    }
+
+    .table-hover {
+      tbody tr:hover {
+        background-color: #ececec;
+      }
+    }
+
+    .table-bordered {
+      td,th {
+        border: 1px solid #dee2e6;
+      }
+    }
+
+    .table-borderedless {
+      td,th,tr {
+        border: none;
+      }
+    }
+
+    .table-dark {
+        background-color: #212529;
+        color: #fff;
+        td,th,tr {
+        border: 1px solid #373b3e;
+      }
+
+
+    }
+
+    .table-dark.table-hover {
+      tbody tr:hover {
+        background-color: #373b3e;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <table class="table xtable-sm xtable-striped xtable-striped-column table-hover table-bordered xtable-borderedless table-dark">
+    <thead>
+      <tr>
+        <th class="col">#</th>
+        <th class="col">First</th>
+        <th class="col">Last</th>
+        <th class="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th class="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th class="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+<script src="less.js"></script>
+
+</html>
