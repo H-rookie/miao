@@ -15,78 +15,73 @@
         text-align: left;
         border-top: none;
       }
-
       tr {
         border: 1px solid #dee2e6;
         border-width: 1px 0;
       }
-
       td,th {
         padding: 13px;
       }
-
       .row {
         text-align: left;
       }
-    }
 
-    .table-sm {
-      td,th {
-        padding: 5px;
+      &.table-sm {
+        td,th {
+          padding: 5px;
+        }
       }
-    }
 
-    .table-striped {
+      &.table-striped {
       tbody tr:nth-child(2n+1) {
         background-color: #f2f2f2;
+        }
       }
-    }
 
-    .table-striped-column {
+      &.table-striped-column {
       thead tr :nth-child(2n),
       tbody tr :nth-child(2n) {
         background-color: #f2f2f2;
+        }
       }
-    }
 
-    .table-hover {
-      tbody tr:hover {
-        background-color: #ececec;
+      &.table-hover {
+        tbody tr:hover {
+          background-color: #ececec;
+        }
       }
-    }
 
-    .table-bordered {
-      td,th {
-        border: 1px solid #dee2e6;
+      &.table-bordered {
+        td,th {
+          border: 1px solid #dee2e6;
+        }
       }
-    }
 
-    .table-borderedless {
-      td,th,tr {
-        border: none;
+      &.table-borderedless {
+        td,th,tr {
+          border: none;
+        }
       }
-    }
 
-    .table-dark {
+      &.table-dark {
         background-color: #212529;
         color: #fff;
         td,th,tr {
-        border: 1px solid #373b3e;
-      }
+          border: 1px solid #373b3e;
+        }
 
-
-    }
-
-    .table-dark.table-hover {
-      tbody tr:hover {
-        background-color: #373b3e;
+        &.table-hover {
+          tbody tr:hover {
+            background-color: #373b3e;
+          }
+        }
       }
     }
   </style>
 </head>
 
 <body>
-  <table class="table xtable-sm xtable-striped xtable-striped-column table-hover table-bordered xtable-borderedless table-dark">
+  <table class="table xtable-sm table-striped xtable-striped-column table-hover table-bordered xtable-borderedless xtable-dark">
     <thead>
       <tr>
         <th class="col">#</th>
