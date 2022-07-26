@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+}
+.wrapper {
+  width: 1226px;
+  margin: auto;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+* {
+  box-sizing: border-box;
+}
+h1 {
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #333;
+  height: 40px;
+  line-height: 40px;
+  color: #b0b0b0;
+  font-size: 12px;
+}
+header .box {
+  display: flex;
+}
+header .box .shortcut {
+  margin-right: auto;
+}
+header .box .shortcut ul {
+  display: flex;
+}
+header .box .shortcut ul li a {
+  padding: 0 8px;
+  border-right: 1px solid #423b36;
+  color: #b0b0b0;
+}
+header .box .shortcut ul li a:hover {
+  color: #deffde;
+}
+header .box .shortcut ul li:last-child a {
+  border: none;
+}
+header .box .register ul {
+  display: flex;
+}
+header .box .register ul li a {
+  padding: 0 8px;
+  border-right: 1px solid #423b36;
+}
+header .box .register ul li a:hover {
+  color: #deffde;
+}
+header .box .register ul li:last-child a {
+  border: none;
+}
+header .box .shopcar a {
+  display: block;
+  position: relative;
+  height: 40px;
+  background-color: #424242;
+  padding: 0 10px;
+  margin-left: 20px;
+}
+header .box .shopcar a::after {
+  content: '';
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 315px;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 0 3px;
+}
+header .box .shopcar a:hover {
+  background-color: #fff;
+  color: #ff672e;
+}
+header .box .shopcar a:hover::after {
+  visibility: visible;
+  transition: 5s linear;
+}
+body > .box {
+  height: 60px;
+  line-height: 60px;
+  margin: 20px auto;
+}
+body > .box h1 {
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-right: 180px;
+  background-image: url(../images/www-mi-com-8m4cioe/img/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-size: 0;
+}
+body > .box .nav {
+  float: left;
+}
+body > .box .search {
+  float: right;
+}

@@ -1,0 +1,145 @@
+//out: ../css/index.css
+
+// 公共样式
+body {
+  margin: 0;
+}
+
+.wrapper {
+  width: 1226px;
+  margin: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+// 快捷导航开始
+header {
+  background-color: #333;
+  height: 40px;
+  line-height: 40px;
+  color: #b0b0b0;
+  font-size: 12px;
+
+  .box {
+    display: flex;
+    // 导航
+    .shortcut {
+      margin-right: auto;
+
+      ul {
+        display: flex;
+        li {
+          a {
+            padding: 0 8px;
+            border-right: 1px solid #423b36;
+            color: #b0b0b0;
+
+            &:hover {
+              color: #deffde;
+            }
+          }
+          &:last-child a {
+            border: none;
+          }
+        }
+      }
+    }
+
+    // 注册
+    .register {
+      ul {
+        display: flex;
+        li {
+          a {
+            padding: 0 8px;
+            border-right: 1px solid #423b36;
+            &:hover {
+              color: #deffde;
+            }
+          }
+          &:last-child a {
+            border: none;
+          }
+        }
+      }
+    }
+
+    // 购物车
+    .shopcar {
+      a {
+        display: block;
+        position: relative;
+        height: 40px;
+        background-color: #424242;
+        padding: 0 10px;
+        margin-left: 20px;
+        &::after {
+          content: '';
+          visibility: hidden;
+          position: absolute;
+          top: 100%;
+          right: 0;
+
+          width: 315px;
+          height: 100px;
+          background-color: #fff;
+          box-shadow: 0 0 3px;
+        }
+        &:hover {
+          background-color: #fff;
+          color: #ff672e;
+
+          &::after {
+            visibility: visible;
+            transition: 5s linear;
+          }
+        }
+      }
+    }
+  }
+}
+// 快捷导航结束
+
+// 头部开始
+body > .box {
+  height: 60px;
+  line-height: 60px;
+  margin: 20px auto;
+  h1 {
+    float: left;
+
+    width: 60px;
+    height: 60px;
+    margin-right: 180px;
+    background-image: url(../images/www-mi-com-8m4cioe/img/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 0;
+  }
+
+  .nav {
+    float: left;
+  }
+
+  .search {
+    float: right;
+  }
+}
+// 头部结束

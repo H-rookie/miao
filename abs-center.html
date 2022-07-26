@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style id="jsbin-css">
+  * {
+    xbackground-color: rgba(0,0,0,0.08);
+    xbox-shadow: inset 0 0 1px red;
+  }
+
+  html {
+    xzoom: 2;
+  }
+  /* 第一个方法：定位，需要给宽高 */
+
+  body {
+    display: flow-root;
+  }
+
+  .abs1 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: pink;
+    margin: 20px auto;
+  }
+
+  .abs1 span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    background-color: cyan;
+  }
+
+  /* flex,不用给宽高，太宽用jus和align-items */
+  .abs2 {
+    width: 100px;
+    height: 100px;
+    background: pink;
+    display: flex;
+    margin: 20px auto;
+  }
+
+  .abs2 span {
+    margin: auto;
+  }
+
+  /* 表格 */
+  .abs3 {
+    display: table-cell;
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  section {
+    margin: 20px auto;
+    width: 100px;
+    height: 100px;
+  }
+
+  /* 行内块,margin-top需要试× */
+  .abs4 {
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    text-align: center;
+    overflow: auto;
+    margin: 20px auto;
+  }
+
+  .abs4 span{
+    width: 20px;
+    display: inline-block;
+    margin: auto;
+    margin-top: 40%;
+  }
+
+/*  */
+
+</style>
+</head>
+<body>
+   <div class="abs1">
+     <span>1</span>
+   </div>
+
+  <div class="abs2">
+    <span>2</span>
+  </div>
+
+  <section>
+    <div class="abs3">
+      <span>3</span>
+    </div>
+  </section>
+
+  <div class="abs4">
+    <span>4</span>
+  </div>
+</body>
+</html>
