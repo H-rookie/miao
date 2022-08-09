@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2022 by H-rookie (http://jsbin.com/kimiles/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+* {
+  background-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 1px red;
+}
+html,body {
+  xzoom: 2;
+  height: 100%;
+}
+body > div {
+  margin: 50px;
+}
+.mi-aside {
+  height: 180px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(6, 1fr);
+  grid-auto-columns: 60px;
+  gap: 5px;
+}
+.mi-product {
+  display: grid;
+  height: 180px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px
+}
+.mi-product div {
+  grid-row: span 2;
+}
+
+.mi-product div:nth-child(1) {
+  grid-row: span 4;
+}
+
+.mi-product div:nth-last-child(-n+2) {
+  grid-row: span 1;
+}
+
+.twitter {
+  xgap: 5px;
+  width: 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 50px;
+  grid-auto-flow: row dense;
+}
+
+.twitter div:nth-child(12n+1),
+.twitter div:nth-child(15n+8) {
+  grid-row: span 2;
+  grid-column: span 2; 
+}
+
+.oald {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100px 1fr 100px 100px;
+  grid-template-rows: 50px 1fr;
+}
+
+.oald div:not(:nth-child(2)) {
+  grid-row: span 2;
+}
+
+.qq-mail {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+
+.qq-mail div:nth-child(1) {
+  grid-column: span 2;
+}
+</style>
+</head>
+<body>
+  <div class="mi-aside">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  
+  <div class="mi-product">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  
+  <div class="twitter">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  
+  <div class="oald">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  
+  <div class="qq-mail">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</body>
+</html>

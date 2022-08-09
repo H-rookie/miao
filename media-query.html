@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    div {
+      height: 100px;
+      background-color: yellow;
+      @media(max-width:1200px)  {
+        background-color: gray;
+      }
+      @media(max-width:1000px)  {
+        background-color: green;
+      }
+      @media(max-width:800px)  {
+        background-color: blue;
+      }
+      @media (max-width:400px) {
+        background-color: red;
+      }
+
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 使用media query让一个div元素的颜色:
+       在窗口宽度为400以内的时候,是红色
+       400到800之间是蓝色
+       800到1000之间是绿色
+       1000到1200之间是灰色
+       1200以上是粉色 -->
+  <div></div>
+</body>
+<script src="./less.js"></script>
+
+</html>

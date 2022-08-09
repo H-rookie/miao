@@ -5,7 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./my-iconfont.css">
   <style type="text/less">
+
     input {
       display: none;
     }
@@ -39,6 +41,18 @@
       background-color: #30f34d;
       border-color: #30f34d;
     }
+
+    @font-face {
+      font-family: iconfont;
+      src: url(./iconfont1.ttf);
+    }
+
+    .iconfont {
+      font-family: iconfont;
+    }
+    .bao::before {
+      content: "\E607F";
+    }
   </style>
 </head>
 <body>
@@ -46,6 +60,9 @@
   <label class="ios" for="ck1">
     <span></span>
   </label>
+  <em class="iconfont iconfont-wx iconfont-a iconfont-b iconfont-c iconfont-d"></em>
+  <em class="iconfont iconfont-a"></em>
+  <span class="iconfont bao"></span>
 </body>
 <script src="less.js"></script>
 </html>

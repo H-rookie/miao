@@ -87,8 +87,27 @@
     margin-top: 40%;
   }
 
-/*  */
+  /* 绝对定位:50%,margin负值 */
+  .abs5 {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    text-align: center;
+    margin: 20px auto;
+  }
 
+  .abs5 span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+
+    background-color: cyan;
+  }
 </style>
 </head>
 <body>
@@ -108,6 +127,10 @@
 
   <div class="abs4">
     <span>4</span>
+  </div>
+
+  <div class="abs5">
+    <span>5</span>
   </div>
 </body>
 </html>

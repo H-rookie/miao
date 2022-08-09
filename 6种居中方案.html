@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2022 by xieranmaya (http://jsbin.com/pufagep/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+* {
+  background-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 1px red;
+}
+html {
+  zoom: 2;
+}
+
+body > div {
+  width: 200px;
+  height: 200px;
+  margin: 30px;
+}
+
+.outer1 {
+  position: relative;
+  height: auto;
+}
+/* 
+外部元素不用定高
+缺点:内部元素必须定宽定高 */
+.inner1 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.outer2 {
+  position: relative;
+  
+}
+/* 好处:内部元素可以比外部元素大
+内部元素不用定高
+外部元素不用定宽高*/
+.inner2 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.outer3 {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+/* 
+常规流,没有定位
+内部元素需要比外部元素小
+*/
+.inner3 {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  xmargin: auto;
+  text-align: left;
+}
+
+
+.outer4 {
+  display: flex;
+  align-items: center;
+  xalign-content: center;
+  justify-content: center;
+}
+/* 
+常规流
+内部元素可以比外部元素大
+有好几种写法
+*/
+.inner4 {
+  width: 220px;
+  flex: none;
+  height: 230px;
+}
+
+
+.outer5 {
+  line-height: 200px;
+  text-align: center;
+  font-size: 0;
+}
+/* 
+行内布局,常规流
+一行的高度就是元素的高度
+内部元素vertical-align为middle
+内部元素可以不定高
+*/
+.inner5 {
+  font-size: 16px;
+  text-align: left;
+  line-height: normal;
+  display: inline-block;
+  width: 50px;
+  xheight: 50px;
+  vertical-align: middle;
+}
+
+
+
+.outer6 {
+  display: grid;
+  xalign-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.inner6 {
+  width: 250px;
+  height: 250px;
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+  <div class="outer1">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nam aspernatur nulla blanditiis eveniet, culpa beatae facere vitae, ex sunt consequatur quaerat, illo ut doloribus natus libero mollitia iste quae.
+    <div class="inner1"></div>
+  </div>
+  <div class="outer2">
+    <div class="inner2"></div>
+  </div>
+  
+  <div class="outer3">
+    <div class="inner3">a</div>
+  </div>
+  
+  <div class="outer4">
+    <div class="inner4">Lorem ipsum dolor </div>
+  </div>
+  
+  
+  
+  <div class="outer5">
+    a<div class="inner5">aaa</div>
+  </div>
+  
+  
+  <div class="outer6">
+    <div class="inner6"></div>
+  </div>
+</body>
+</html>

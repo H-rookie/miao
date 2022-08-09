@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 图标字体;
+  src: url(./mi/others/mi-iconfont.ttf);
+}
+
+.iconfont {
+  font-family: 图标字体;
+}
+
+.iconfont-wx::after {
+  content: '\E608';
+}
+.iconfont-a::after {
+  content: '\E609';
+}
+.iconfont-b::after {
+  content: '\E60A';
+}
+.iconfont-c::after {
+  content: '\E60B';
+}
+.iconfont-d::after {
+  content: '\E60C';
+}
