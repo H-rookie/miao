@@ -477,17 +477,22 @@
   var n = +prompt()
   var total_all = 0
 
+  var jing_total = 0
+  var yin_total = 0
+  var tong_total = 0
+
   for (var i = 0; i < n; i++) {
-    var count = 0
-    var total_day = 0
-    for (var j = 0; j < 3; j++) {
-      var count = +prompt()
-      total_day += count
-    }
-    console.log(total_day);
-    total_all += total_day
+    var jing = +prompt()
+    var yin = +prompt()
+    var tong = +prompt()
+
+    jing_total += jing
+    yin_total += yin
+    tong_total += tong
   }
-  console.log(total_all);
+
+  console.log(jing_total, yin_total, tong_total, jing_total + yin_total + tong_total);
+
 
 </script>
 
@@ -528,10 +533,13 @@
   var n = +prompt()
   var total = 0
 
-  for (var i = m; i <= n; i++) {
-    if (i % 17 == 0) {
-      total += i
-    }
+  if (m % 17 !== 0) {
+    m = m + (17 - m % 17)
+  }
+
+  for (var i = m; i <= n; i = i + 17) {
+
+    total += i
   }
 
   console.log(total);
@@ -685,6 +693,22 @@
 </script>
 
 <script id="ch0105/19">
+  var n = +prompt() //屋顶数
+  var sum = 0
+
+  for (var i = 0; i < n; i++) {
+    var x = +prompt()
+    var y = +prompt()
+    var people = +prompt()
+
+    var distance = Math.sqrt(x ** 2 + y ** 2)
+    var time = distance / 50 * 2 + people * 1.5
+
+    sum = sum + time
+
+  }
+
+  console.log(Math.ceil(sum));
 
 </script>
 
@@ -692,29 +716,102 @@
   var h = +prompt()
   var distance = h
 
-  for (var i=0; i< 9; i++) {
+  for (var i = 0; i < 9; i++) {
     var h = h / 2
-    distance = distance + h*2
+    distance = distance + h * 2
   }
+
+  console.log(distance, h/2);
+
 </script>
 
 <script id="ch0105/21">
+  var n = +prompt()
+
+  while (n != 1) {
+    var stop = n
+    if (n % 2 == 1) {
+      n = n * 3 + 1
+      console.log(stop + "*3+1=" + n);
+    } else {
+      n = n / 2
+      console.log(stop + "/2=" + n);
+    }
+  }
+
+  if (n = 1) {
+    console.log("End");
+  }
 
 </script>
 
 <script id="ch0105/22">
-  var i = 0
-  while (i < 10) {
-    console.log('');
-    a = a + 1
+  var money = 0  //手中的现金
+  var over = 0   //每次存入的钱
+  var over_all = 0
+  var flag = false
+
+
+  for (var i = 1; i <= 12; i++) {
+    let plan$ = +prompt()
+    money += 300
+
+    if (plan$ > money) {
+      flag = true
+      console.log('-' + i);
+    }
+
+    if (money - plan$ >= 100) {
+      over = parseInt((money - plan$) / 100) * 100
+      over_all += over
+      money = money - plan$ - over
+    } else if (money - plan$ < 100) {
+      money = money - plan$
+    }
+
+  }
+
+  if (!flag) {
+    console.log(money + over_all * 1.2);
   }
 </script>
 
 <script id="ch0105/23">
+  var m = +prompt()
+  var n = +prompt()
+  var count = 0
+
+  for (var i = 0; i < n; i++) {
+    var pill = +prompt()
+
+    if (m < pill) {
+      count++
+    } else {
+      m = m - pill
+    }
+  }
+
+  console.log(count);
 
 </script>
 
 <script id="ch0105/24">
+  var n = +prompt()
+  var time = 0
+
+  for (var i = 0; i < n; i++) {
+    var shrink = +prompt()
+    var grow = +prompt()
+
+    if (shrink >= 90 && shrink <= 140 && grow >= 60 && grow <= 90) {
+      time++
+    } else {
+      time = 0
+    }
+  }
+
+  console.log(time);
+
 
 </script>
 
@@ -723,47 +820,243 @@
 </script>
 
 <script id="ch0105/26">
+    var n = +prompt()
+  var result = 0 //最后一位
+  var count = 0
+  var ge
+
+  for (var i = 0; i < n; i++) {
+    var num = +prompt()
+
+    ge = num % 10
+    num = (num - result) / 10
+    for (var j = 0; j < 3; j++) {
+      result = num % 10 //取得最后一位
+
+      ge = ge - result
+
+      num = (num - result) / 10 //减去一位
+    }
+
+    if (ge > 0) {
+      count++
+    }
+  }
+
+  console.log(count);
 
 </script>
 
 <script id="ch0105/27">
+  var k = +prompt()
+  var sn = 0
+  var n = 0
+
+  while (sn <= k) {
+    n++
+    sn = sn + 1 / n
+  }
+
+  console.log(n);
+
+
 
 </script>
 
 <script id="ch0105/28">
+  var n = +prompt()
+  var result
 
+  while (n > 0) {
+    result = n % 10
+    n = (n - result) / 10
+    console.log(result);
+  }
 </script>
 
 <script id="ch0105/29">
+  var n = +prompt()
+
+  var reverse  //反转后的值
+
+  //判断是正负数
+  if (n > 0) {
+    reverse = ''
+  } else {
+    reverse = '-'
+    n = -n
+  }
+
+  for (var i = 0; ; i++) {
+
+
+    result = n % 10   // 最后一位
+    n = (n - result) / 10 // 去掉一位后的剩余数
+
+    //当剩余那位是0时，不反转
+    if (result == 0) {
+
+    } else {
+      reverse = reverse + result
+    }
+
+    if (n <= 0) {
+      break
+    }
+  }
+
+  console.log(reverse);
+
+
+
+
 
 </script>
 
 <script id="ch0105/30">
+  var m = +prompt()
+  var k = +prompt()
+  var count = 0
+  var result
 
+  if (m % 19 === 0) {
+    for (var i = 0; ; i++) {
+      result = m % 10
+      m = (m - result) / 10
+
+      //判断是3的个数
+      if (result == 3) {
+        count++
+      }
+
+      if (m <= 0) {
+        break
+      }
+    }
+
+    if (count == k) {
+      console.log('YES');
+    } else {
+      console.log('NO');
+    }
+  } else {
+    console.log('NO');
+  }
 </script>
 
 <script id="ch0105/31">
+  var n = 4   //灯数
+  var m = 4   //人数
+  var result = ''
+
+  for (var i = 1; i <= n; i++) {
+
+    var count = 0
+    for (var j = 1; j <= m; j++) {
+      if (i % j === 0) {
+        count ++
+      }
+    }
+
+    if (count % 2 === 1) {
+      result += i
+    }
+  }
+
+  console.log(result);
+
 
 </script>
 
 <script id="ch0105/32">
+  var n= 2
+  var sum = 0
+  var p = 1
+  var q = 2
+  var center
+
+  for (var i = 1; i<=n; i++) {
+    sum += q / p
+
+    //q等于前面一次的p和q的和，p等于前面一次的q的值
+    center = q
+    q = q + p
+    p = center //保留前一次q的值
+  }
+
+  console.log(sum.toFixed(4));
+
 
 </script>
 
 <script id="ch0105/33">
+  var n = +prompt()
+  var sum = 0
+
+  for (var i = 1; i <= n; i++) {
+    sum += (-1) ** (i - 1) * (1 / i)
+  }
+
+  console.log(sum.toFixed(4));
 
 </script>
 
 <script id="ch0105/34">
+  var n = +prompt()
+  var sum = 0
+
+
+  for (var i = 1; i <= n; i++) {
+
+    var mult = 1
+
+    //计算i的阶层
+    for (var j = 1; j <= i; j++) {
+      mult *= j
+    }
+
+    //阶层和
+    sum += mult
+  }
+
+  console.log(sum);
 
 </script>
 
 <script id="ch0105/35">
+  debugger
+  var n = 10
+  var sum = 1 //1到n的阶乘和之前还有个1
+
+
+  for (var i = 1; i <= n; i++) {
+
+    var mult = 1
+
+    //计算i的阶层
+    for (var j = 1; j <= i; j++) {
+      mult *= j
+    }
+
+    //阶层和
+    sum += 1 / mult
+  }
+
+  console.log(sum.toFixed(10));
+
 
 </script>
 
 <script id="ch0105/36">
+  var x = +prompt()
+  var n = +prompt()
+  var sum = 0
 
+  for (var i = 0; i <= n; i++) {
+    sum += x ** i
+  }
+
+  console.log(sum.toFixed(2));
 </script>
 
 <script id="ch0105/37">
@@ -775,10 +1068,64 @@
 </script>
 
 <script id="ch0105/39">
+  var n = +prompt()
+  var sum = 0
+  var result
+
+
+  for (var i = 1; i <= n; i++) {
+    if (i % 7 !== 0) {
+
+      var flag = false  //i一更新就得重置flag的值
+      var center = i    //不能直接动i,会导致i一直等于0，外层死循环
+      while(1) {
+        result = center % 10
+        center = (center - result) / 10
+
+        if (result === 7) {
+          flag = true
+          break
+        }
+
+        if (center == 0) {
+          break
+        }
+
+      }
+
+      if (!flag) {
+        sum = sum + i**2
+      }
+    }
+  }
+
+  console.log(sum);
 
 </script>
 
 <script id="ch0105/40">
+  var n = +prompt()
+  var count = 0
+  var result
+
+  for (var i=1 ; i<= n; i++) {
+
+      var center = i
+      while (1) {
+        result = center % 10
+        center = (center - result) / 10
+
+        if (result === 1) {
+          count = count + 1
+        }
+
+        if (center === 0) {
+          break
+        }
+      }
+  }
+
+  console.log(count);
 
 </script>
 
