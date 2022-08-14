@@ -748,7 +748,7 @@
 <script id="ch0105/22">
   var money = 0  //手中的现金
   var over = 0   //每次存入的钱
-  var over_all = 0
+  var over_all = 0 //所有存钱数
   var flag = false
 
 
@@ -815,6 +815,7 @@
 
 </script>
 
+<!-- 未做 -->
 <script id="ch0105/25">
 
 </script>
@@ -1059,10 +1060,13 @@
   console.log(sum.toFixed(2));
 </script>
 
+<!-- 未做 -->
 <script id="ch0105/37">
 
 </script>
 
+
+<!-- 未做 -->
 <script id="ch0105/38">
 
 </script>
@@ -1110,7 +1114,8 @@
 
   for (var i=1 ; i<= n; i++) {
 
-      var center = i
+
+      var center = i //保存i的值
       while (1) {
         result = center % 10
         center = (center - result) / 10
@@ -1130,21 +1135,353 @@
 </script>
 
 <script id="ch0105/41">
+  var n = +prompt()
+  var m = +prompt()
+  var count = 0
+  var result
 
+  for (var i=n ; i<= m; i++) {
+
+      var center = i
+      while (1) {
+        result = center % 10
+        center = (center - result) / 10
+
+        if (result === 2) {
+          count = count + 1
+        }
+
+        if (center === 0) {
+          break
+        }
+      }
+  }
+
+  console.log(count);
 </script>
 
+<!-- 未做 -->
 <script id="ch0105/42">
 
 </script>
 
 <script id="ch0105/43">
+  var n = 21
+  var other //另一个质数
 
+  for (var i= 2; i< n ;i++) {
+    if (n%i === 0) {
+      other = n / i
+
+      if (other >= i) {
+        console.log(other);
+      } else {
+        console.log(i);
+      }
+
+      break
+    }
+  }
 </script>
 
 <script id="ch0105/44">
+  var n = +prompt()
+  var count = 0
 
+  for (var i = 2; ; i++) {
+    //判断是不是质数
+
+    var flag = false
+    for (var j = 2; j<i; j++) {
+      if (i % j === 0) {
+        flag = true
+      }
+    }
+
+    if (!flag) {
+      count++
+    }
+
+    if (n === count) {
+      console.log(i);
+      break
+    }
+  }
 </script>
 
 <script id="ch0105/45">
+  var day = +prompt()
+  var sum = 0
+  var count = 0
 
+  for (var i = 1; i<= day ; i++) {
+    for (var j=1; j<=i; j++) {
+      sum += i
+      count++
+    }
+
+    if(count === day) {
+      break
+    }
+  }
+
+  console.log(sum);
+
+</script>
+
+
+<!-- narcissistic: 输入一个数，判断是否是水仙花数
+narcissistics: 输出10000以内的水仙花数
+palindrom: 输入一个数，判断它数是否是回文数，如1223221
+weekday: 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
+complete-number: 输入一个数，判断它是否是完全数（自行查相关概念）
+complete-numbers: 输出1000以内的完全数
+prime: 输入一个数，判断它是否是素数
+primes: 输出100以内的素数
+itoa: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
+lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
+sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt -->
+
+<script id="narcissistic">
+//输入一个数，判断是否是水仙花数
+  var n = +prompt()
+  var result
+  var sum = 0
+  var center = n
+
+  while (1) {
+    result = center % 10
+    center = (center - result) / 10
+
+    sum += (result ** 3)
+
+    if (center === 0) {
+      break
+    }
+  }
+
+  if (sum === n) {
+    console.log(n + "是水仙花数");
+  } else {
+    console.log(n + "不是水仙花数");
+  }
+
+</script>
+
+<script id="narcissistice">
+// 输出10000以内的水仙花数
+  var result
+
+  for (var i=100 ; i<= 1000; i++) {
+
+      var sum = 0
+      var center = i //保存i的值
+      while (1) {
+        result = center % 10
+        center = (center - result) / 10
+
+        sum += (result ** 3)
+
+        if (center === 0) {
+          break
+        }
+      }
+
+      if (sum === i) {
+        console.log(i);
+      }
+  }
+</script>
+
+<script id="palindrom">
+// 输入一个数，判断它数是否是回文数，如1223221
+  var n = +prompt()
+
+  var center = n
+  var back = '' //记录之后拼接的数
+  while(1) {
+    result = center % 10
+    center = (center - result) / 10
+
+    back += result
+    if (center == 0) {
+      break
+    }
+  }
+
+  if (n == back) {
+    console.log('是');
+  } else {
+    console.log('不是');
+  }
+</script>
+
+<script id="weekday">
+//  输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
+  var year = 2022
+  var mouth = 8
+  var sum = 1 //该月的第一天，之前算的是2022年前所有年的天数和这一年8月份前的所有天数
+
+
+  //判断这一年的mouth前多少天
+  for (var i= 1; i<mouth; i++) {
+    if (i==1||i==3||i==5||i==7||i==8||i==10||i==12) {
+      sum += 31
+    } else if (i==4 || i==6 || i==9 || i==11) {
+      sum += 30
+    } else if (i==2) {
+      if (year % 4===0 && year %100!==0|| year %400 ===0) {
+        sum += 29
+      } else {
+        sum += 28
+      }
+    }
+  }
+
+  //判断从0001年到2022年总的天数
+  for (var k = 1; k< 2022; k++) {
+    if (year % 4===0 && year %100!==0|| year %400 ===0){
+      sum += 366
+    } else {
+      sum += 365
+    }
+  }
+
+  //循环7次，j代表星期号，总天数对7求模（0001年1月1日为星期一）
+  for (var j = 1; j<=7; j++) {
+    if (sum % 7 === j) {
+      console.log('今天是星期' + j);
+    }
+  }
+</script>
+
+<script id="complete-number">
+// 输入一个数，判断它是否是完全数（自行查相关概念）
+  var n = +prompt()
+  var sum= 0
+
+  for (var i = 1; i< n; i++) {
+    if (n % i === 0) {
+      sum += i
+    }
+  }
+
+  if (sum == n) {
+    console.log('是完全数');
+  } else {
+    console.log('不是完全数');
+  }
+</script>
+
+<script id="complete-numbers">
+// 输出1000以内的完全数
+  for (var j = 1; j<=1000; j++) {
+    var sum= 0
+
+    for (var i = 1; i< j; i++) {
+      if (j % i === 0) {
+        sum += i
+      }
+    }
+
+    if (sum == j) {
+      console.log(j);
+    }
+  }
+</script>
+
+<script id="prime">
+// 输入一个数，判断它是否是素数
+  var n = +prompt()
+  var flag = false
+
+  for (var i = 2; i< n; i++) {
+    if (n % i === 0) {
+      flag = true
+      break
+    }
+  }
+
+  if (!flag) {
+    console.log('是质数');
+  } else {
+    console.log('是合数');
+  }
+
+</script>
+
+<script id="primes">
+// 输出100以内的素数
+
+
+  for (var j=1; j<=100; j++) {
+
+    var flag = false
+    for (var i = 2; i< j; i++) {
+      if (j % i === 0) {
+        flag = true
+        break
+      }
+    }
+
+    if (!flag) {
+      console.log(j);
+    }
+  }
+</script>
+
+<!-- 未做 -->
+<script id="itoa">
+// 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
+
+</script>
+
+<script id="icf&lcm">
+// 输入两个数，输出它们的最大公约数和最小公倍数
+  var n = +prompt()
+  var m = +prompt()
+  var max = -Infinity  //最大公约数
+  var min =  Infinity //最小公倍数
+
+
+  //最大公约数
+  for (var i= 1; i> 0; i++) {
+    if (n%i ===0 && m%i ===0) {
+      if (i > max) {
+        max = i
+      }
+    }
+
+    if (i === n||i === m) {
+      console.log(max);
+      break
+    }
+  }
+
+  //最小公倍数
+  for (var i= 1; i> 0; i++) {
+    if (i % n===0&& i%m===0) {
+      if (i<min) {
+        min = i
+        console.log(min);
+        break
+      }
+    }
+  }
+
+</script>
+
+
+<!-- 未做 -->
+<script id="sqrt">
+// 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
+  var n = +prompt()
+  var result
+
+  for (var i = 1; i<= n; i+= 0.001) {
+    result = i**2
+    if (Math.ceil(result.toFixed(3)) === n) {
+      console.log(i);
+    }
+  }
 </script>
