@@ -1318,8 +1318,8 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
 
 <script id="weekday">
 //  输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
-  var year = 2022
-  var mouth = 8
+  var year = 2018
+  var mouth = 6
   var sum = 1 //该月的第一天，之前算的是2022年前所有年的天数和这一年8月份前的所有天数
 
 
@@ -1339,8 +1339,8 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   }
 
   //判断从0001年到2022年总的天数
-  for (var k = 1; k< 2022; k++) {
-    if (year % 4===0 && year %100!==0|| year %400 ===0){
+  for (var k = 1; k< year; k++) {
+    if (k % 4===0 && k %100!==0|| k %400 ===0){
       sum += 366
     } else {
       sum += 365
@@ -1350,7 +1350,7 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   //循环7次，j代表星期号，总天数对7求模（0001年1月1日为星期一）
   for (var j = 1; j<=7; j++) {
     if (sum % 7 === j) {
-      console.log('今天是星期' + j);
+      console.log(j);
     }
   }
 </script>
@@ -1402,7 +1402,9 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
     }
   }
 
-  if (!flag) {
+  if (n==1){
+  console.log('NO');
+  }else if (!flag) {
     console.log('YES');
   } else {
     console.log('NO');
@@ -1414,7 +1416,7 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
 // 输出100以内的素数
 
 
-  for (var j=1; j<=100; j++) {
+  for (var j=2; j<=100; j++) {
 
     var flag = false
     for (var i = 2; i< j; i++) {
