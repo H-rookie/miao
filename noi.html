@@ -420,7 +420,7 @@
   }
 
   var average = total / n
-  console.log(average.toFixed(2));
+  console.log(average.toFixed(4));
 </script>
 
 <script id="ch0105/04">
@@ -433,7 +433,7 @@
   }
 
   var average = total / n
-  console.log(total, Number(average.toFixed(5)));
+  console.log(total, average.toFixed(5));
 </script>
 
 <script id="ch0105/05">
@@ -721,7 +721,7 @@
     distance = distance + h * 2
   }
 
-  console.log(distance, h/2);
+  console.log(distance.toFixed(4), (h/2).toFixed(7));
 
 </script>
 
@@ -946,8 +946,8 @@
 </script>
 
 <script id="ch0105/31">
-  var n = 4   //灯数
-  var m = 4   //人数
+  var n = +prompt() //灯数
+  var m = +prompt()   //人数
   var result = ''
 
   for (var i = 1; i <= n; i++) {
@@ -1261,14 +1261,14 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   }
 
   if (sum === n) {
-    console.log(n + "是水仙花数");
+    console.log('YES');
   } else {
-    console.log(n + "不是水仙花数");
+    console.log('NO');
   }
 
 </script>
 
-<script id="narcissistice">
+<script id="narcissistics">
 // 输出10000以内的水仙花数
   var result
 
@@ -1310,9 +1310,9 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   }
 
   if (n == back) {
-    console.log('是');
+    console.log('YES');
   } else {
-    console.log('不是');
+    console.log('NO');
   }
 </script>
 
@@ -1367,9 +1367,9 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   }
 
   if (sum == n) {
-    console.log('是完全数');
+    console.log('YES');
   } else {
-    console.log('不是完全数');
+    console.log('NO');
   }
 </script>
 
@@ -1403,9 +1403,9 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   }
 
   if (!flag) {
-    console.log('是质数');
+    console.log('YES');
   } else {
-    console.log('是合数');
+    console.log('NO');
   }
 
 </script>
@@ -1431,12 +1431,12 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
 </script>
 
 <!-- 未做 -->
-<script id="itoa">
+<script id="itob">
 // 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
 
 </script>
 
-<script id="icf&lcm">
+<script id="lcf&lcm">
 // 输入两个数，输出它们的最大公约数和最小公倍数
   var n = +prompt()
   var m = +prompt()
