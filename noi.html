@@ -363,6 +363,7 @@
 
 <script id="ch0104/17">
 
+
 </script>
 
 <script id="ch0104/18">
@@ -652,35 +653,67 @@
 </script>
 
 <script id="ch0105/17">
-  var n = +prompt()
-  var first = 1
-  var two = 1
+  var k = 19
+  var a = 1
+  var b = 1
+  var c
 
-  if (n == 1 || n == 2) {
+  if (k == 1 || k == 2) {
     console.log(1);
   }
 
-  for (var i = 0; i < n - 2; i++) {
-    var a = first + two
-    first = two
-    two = a
+  for (var i = 1; i <= (k - 2); i++) {
+    c = a + b
+    a = b
+    b = c
+  }
+
+  console.log(c);
+
+  //
+
+  var n = +prompt()
+  var a = 0
+  var b = 1
+  var c
+
+  for (var i = 1; i <= n; i++) {
+    c = a + b
+    a = b
+    b = c
   }
 
   console.log(a);
+
+  //
+  var foii = function (n) {
+
+    var a = 0
+    var b = 1
+    var c
+
+    for (var i = 1; i <= n; i++) {
+      c = a + b
+      a = b
+      b = c
+    }
+
+    return a
+  }
 
 </script>
 
 <script id="ch0105/18">
   var n = +prompt()
-  var ji_zong = +prompt()
-  var ji_huo = +prompt()
+  var baseTotal = +prompt() //base基准
+  var baseEffect = +prompt()
 
-  var x = ji_huo / ji_zong  //鸡尾酒疗法
+  var x = baseTotal / baseEffect //鸡尾酒疗法
   for (var i = 0; i < n - 1; i++) {
 
-    var xin_zong = +prompt()
-    var xin_huo = +prompt()
-    y = xin_huo / xin_zong
+    var total = +prompt()
+    var effect = +prompt()
+    y = total / effect
 
     if (y - x > 0.05) {
       console.log('better');
@@ -715,21 +748,36 @@
 <script id="ch0105/20">
   var h = +prompt()
   var distance = h
+  h = h / 2 //从第二次开始，第二次的高度是h/2
 
   for (var i = 0; i < 9; i++) {
-    var h = h / 2
     distance = distance + h * 2
+    h = h / 2
   }
 
-  console.log(distance.toFixed(4), (h/2).toFixed(7));
+  console.log(distance.toFixed(4), (h).toFixed(7));
+
+
+  /////////////
+
+  var h = +prompt()
+  var H = h //保存第一次的高度
+  var distance = 0
+  for (var i = 0; i < 10; i++) {
+    distance += 2 * h //第i次落地的总距离
+    h = h / 2         //第i次落地弹起的高度
+  }
+
+  distance -= H //多算了一半自己补齐的第一次高度
+  console.log(distance, h);
 
 </script>
 
 <script id="ch0105/21">
   var n = +prompt()
 
-  while (n != 1) {
-    var stop = n
+  while (n != 1) {  //不用判断是否为1，为1时不进入循环，后面打出End
+    var stop = n //保留还没计算前的n的值，用于拼接
     if (n % 2 == 1) {
       n = n * 3 + 1
       console.log(stop + "*3+1=" + n);
@@ -739,9 +787,7 @@
     }
   }
 
-  if (n = 1) {
-    console.log("End");
-  }
+  console.log("End");
 
 </script>
 
@@ -759,14 +805,11 @@
     if (plan$ > money) {
       flag = true
       console.log('-' + i);
-    }
-
-    if (money - plan$ >= 100) {
-      over = parseInt((money - plan$) / 100) * 100
+      break
+    } else {
+      over = parseInt((money - plan$) / 100) * 100 //只有超出100以上才会存，不然为0，所以不需要分别计算大于一百和小于一百的情况
       over_all += over
       money = money - plan$ - over
-    } else if (money - plan$ < 100) {
-      money = money - plan$
     }
 
   }
@@ -795,9 +838,12 @@
 
 </script>
 
+
+//最大持续时间！！！
 <script id="ch0105/24">
   var n = +prompt()
-  var time = 0
+  var best = 0  //最大连续时间
+  var time = 0//当前最大持续时间
 
   for (var i = 0; i < n; i++) {
     var shrink = +prompt()
@@ -805,38 +851,65 @@
 
     if (shrink >= 90 && shrink <= 140 && grow >= 60 && grow <= 90) {
       time++
+      if (time > best) {
+        best = time
+      }
     } else {
-      time = 0
+      time = 0  //当一次超出正常，重置当前最大连续时间为0，重新计数
     }
   }
 
-  console.log(time);
+  console.log(best);
 
 
 </script>
 
-<!-- 未做 -->
+//记下写法即可
 <script id="ch0105/25">
 
+  //把abc当成是7进制和9进制
+  for (var a = 0; a <= 6; a++) {
+    for (var b = 0; b <= 6; b++) {
+      for (var c = 0; c <= 6; c++) {
+        if (49 * a + 7 * b + c === 81 * c + 9 * b + a) {
+
+          console.log('' + a + b + c, '' + c + b + a, a * 49 + b * 7 + c);
+        }
+      }
+    }
+  }
+
+  //三位数的100-666七进制和100-888九进制交集十进制时81-342
+  for (var i = 81; i <= 342; i++) {
+    var a7 = i % 7  // 7进制的个位数
+    var b7 = (i - a7) / 7 % 7 // 7进制的“十位数”
+    var c7 = (i - a7 - b7 * 7) / 7 / 7 % 7 // 7进制的“百位数”
+
+    var a9 = i % 9  // 9进制的个位数
+    var b9 = (i - a9) / 9 % 9 // 9进制的“十位数”
+    var c9 = (i - a9 - b9 * 9) / 9 / 9 % 9 // 9进制的“百位数”
+
+    if (a7 == c9 && b7 == b9 && c7 == a9) {
+      console.log('' + a7 + b7 + c7, '' + a9 + b9 + c9, i);
+    }
+  }
 </script>
 
 <script id="ch0105/26">
-    var n = +prompt()
+  var n = +prompt()
   var result = 0 //最后一位
   var count = 0
-  var ge
 
   for (var i = 0; i < n; i++) {
     var num = +prompt()
 
-    ge = num % 10
-    num = (num - result) / 10
-    for (var j = 0; j < 3; j++) {
-      result = num % 10 //取得最后一位
+    var ge = num % 10
+    num = (num - ge) / 10
 
-      ge = ge - result
-
-      num = (num - result) / 10 //减去一位
+    while (num > 0) {
+      result = num % 10
+      ge -= result
+      num = (num - result) / 10
     }
 
     if (ge > 0) {
@@ -851,14 +924,16 @@
 <script id="ch0105/27">
   var k = +prompt()
   var sn = 0
-  var n = 0
 
-  while (sn <= k) {
-    n++
-    sn = sn + 1 / n
+  for (var i = 1; ; i++) {
+    sn = sn + 1 / i
+
+    if (sn > k) {
+      console.log(i);
+      break
+    }
   }
 
-  console.log(n);
 
 
 
@@ -868,49 +943,44 @@
   var n = +prompt()
   var result
 
-  while (n > 0) {
+  do {
     result = n % 10
     n = (n - result) / 10
     console.log(result);
-  }
+  } while (n > 0)
+
 </script>
 
 <script id="ch0105/29">
+
   var n = +prompt()
+  var result
+  var str = ''
+  var flag = false
 
-  var reverse  //反转后的值
-
-  //判断是正负数
-  if (n > 0) {
-    reverse = ''
-  } else {
-    reverse = '-'
+  if (n < 0) {
+    str = '-'
     n = -n
   }
 
-  for (var i = 0; ; i++) {
+  do {
+    result = n % 10
+    n = (n - result) / 10
 
-
-    result = n % 10   // 最后一位
-    n = (n - result) / 10 // 去掉一位后的剩余数
-
-    //当剩余那位是0时，不反转
-    if (result == 0) {
-
+    if (!flag) {
+      if (result !== 0) {
+        str = str + result
+      }
     } else {
-      reverse = reverse + result
+      str = str + ',' + result
     }
 
-    if (n <= 0) {
-      break
-    }
-  }
+    flag = true
 
-  console.log(reverse);
+  } while (n > 0)
 
-
-
-
+  str = parseInt(str, 10)  //"0083" 以0开头的数可能会被当成是八进制，得转为10进制
+  console.log(str);
 
 </script>
 
@@ -947,7 +1017,7 @@
 
 <script id="ch0105/31">
   var n = +prompt() //灯数
-  var m = +prompt()   //人数
+  var m = +prompt() //人数
   var result = ''
 
   for (var i = 1; i <= n; i++) {
@@ -955,7 +1025,7 @@
     var count = 0
     for (var j = 1; j <= m; j++) {
       if (i % j === 0) {
-        count ++
+        count++
       }
     }
 
@@ -963,20 +1033,48 @@
       result += i
     }
   }
-
   console.log(result);
+
+
+  var n = +prompt() //灯数
+  var m = +prompt()   //人数
+  var str = ''
+  var flag = false //是否遇到过第一个灯
+
+  for (var i = 1; i <= n; i++) {
+    var open = true  //这个灯一开始是打开状态
+
+    // m代表次数，同时满足人编号不大于灯编号
+    for (var j = 1; j <= m && j <= i; j++) {
+      if (i % j === 0) {
+        open = !open
+      }
+    }
+
+    if (!open) {
+
+      if (!flag) {
+        flag = true  //第一次进入后就再也进不了，只能满足第一个open为false的灯号
+        str += i
+      } else {
+        str = str + ',' + i
+      }
+    }
+  }
+  console.log(str);
+
 
 
 </script>
 
 <script id="ch0105/32">
-  var n= 2
+  var n = 2
   var sum = 0
   var p = 1
   var q = 2
   var center
 
-  for (var i = 1; i<=n; i++) {
+  for (var i = 1; i <= n; i++) {
     sum += q / p
 
     //q等于前面一次的p和q的和，p等于前面一次的q的值
@@ -987,6 +1085,28 @@
 
   console.log(sum.toFixed(4));
 
+  //
+
+  //在原本的斐波那契数列上计算result = b / a, 再累加即可
+  var n = +prompt()
+  var a = 1
+  var b = 2
+  var c
+  var sum = 0
+  var result
+
+  for (var i = 1; i <= n; i++) {
+    result = b / a
+    sum += result
+    c = a + b
+    a = b
+    b = c
+
+    // b = a + b
+    // a = b - a
+  }
+
+  console.log(sum.toFixed(4));
 
 </script>
 
@@ -1021,6 +1141,41 @@
   }
 
   console.log(sum);
+
+  // //////////
+
+  var n = +prompt()
+  var sum = 0
+
+
+  var mult = 1
+  for (var i = 1; i <= n; i++) {
+
+    mult *= i //之前的阶乘*i   1的阶层等于1,等i = 2时，mult之前存的是1！，1！*2=2！
+    sum += mult
+  }
+
+  console.log(sum);
+
+  ///////
+  var 阶乘 = function (x) {
+    var mult = 1
+    for (var i = 1; i <= x; i++) {
+      mult *= i
+    }
+
+    return mult
+  }
+
+  var n = +prompt()
+  var sum = 0
+  for (var i = 1; i <= n; i++) {
+    sum += 阶乘(i)
+  }
+
+  console.log(sum);
+
+
 
 </script>
 
@@ -1066,9 +1221,35 @@
 </script>
 
 
-<!-- 未做 -->
 <script id="ch0105/38">
+  var n = +prompt()
 
+  for (var i = 0; i < n; i++) {
+    var 最高次幂 = +prompt()
+    var center = 最高次幂  //保存最高次幂
+    //最高次幂为1时，输入两个数，最后一次不输出，只输出一个值
+
+
+    for (var j = 0; j <= 最高次幂; j++) {
+      var num = +prompt()
+
+
+      //特殊情况为0时
+      if (最高次幂 === 0) {
+        console.log(0);
+      } else {
+
+        var result = center * num
+
+        //最后一次不输出
+        if (j !== 最高次幂) {
+
+          console.log(result);
+        }
+        center--
+      }
+    }
+  }
 </script>
 
 <script id="ch0105/39">
@@ -1082,7 +1263,7 @@
 
       var flag = false  //i一更新就得重置flag的值
       var center = i    //不能直接动i,会导致i一直等于0，外层死循环
-      while(1) {
+      while (center > 0) {
         result = center % 10
         center = (center - result) / 10
 
@@ -1091,19 +1272,34 @@
           break
         }
 
-        if (center == 0) {
-          break
-        }
-
       }
 
       if (!flag) {
-        sum = sum + i**2
+        sum = sum + i ** 2
       }
     }
   }
 
   console.log(sum);
+
+  //
+
+  //如果与7有关，返回false;与7无关，返回true
+  var has7 = function (n) {
+    if (n % 7 === 0) {
+      return false
+    }
+
+    while (n > 0) {
+      ge = n % 10
+      if (ge === 7) {
+        return false
+      }
+      n = (n - ge) / 10
+    }
+
+    return true
+  }
 
 </script>
 
@@ -1112,22 +1308,18 @@
   var count = 0
   var result
 
-  for (var i=1 ; i<= n; i++) {
+  for (var i = 1; i <= n; i++) {
 
 
-      var center = i //保存i的值
-      while (1) {
-        result = center % 10
-        center = (center - result) / 10
+    var center = i //保存i的值
+    while (center > 0) {
+      result = center % 10
+      center = (center - result) / 10
 
-        if (result === 1) {
-          count = count + 1
-        }
-
-        if (center === 0) {
-          break
-        }
+      if (result === 1) {
+        count = count + 1
       }
+    }
   }
 
   console.log(count);
@@ -1140,46 +1332,108 @@
   var count = 0
   var result
 
-  for (var i=n ; i<= m; i++) {
+  for (var i = n; i <= m; i++) {
 
-      var center = i
-      while (1) {
-        result = center % 10
-        center = (center - result) / 10
+    var center = i
+    while (center > 0) {
+      result = center % 10
+      center = (center - result) / 10
 
-        if (result === 2) {
-          count = count + 1
-        }
-
-        if (center === 0) {
-          break
-        }
+      if (result === 2) {
+        count = count + 1
       }
+    }
   }
 
   console.log(count);
 </script>
 
-<!-- 未做 -->
+
+
 <script id="ch0105/42">
+  var h = +prompt()
+  var w = +prompt()
+  var char = prompt()
+  var fill = prompt()  //填充方式
+
+  for (var i = 0; i < h; i++) {
+
+    for (var j = 0; j < w; j++) {
+      //边缘时填充
+      if (i == 0 || i == h - 1 || j == 0 || j == w - 1) {
+        char += char
+      } else {
+
+        //中心部分判断是否填充
+        if (fill == 0) {
+          char += ''
+        } else {
+          char += char
+        }
+      }
+    }
+
+    if (i !== h - 1) {
+      char += '\n'
+    }
+  }
+
+  console.log(char);
+
+  // ///////
+  var h = +prompt()
+  var w = +prompt()
+  var char = prompt()
+  var fill = +prompt()  //填充方式
+  var str = ''
+
+  //分别求出边缘行和中间行的摆放方式
+
+  //都是一个符号开头
+  var 边缘 = char
+  var 中间 = char
+  for (var i = 0; i < w - 2; i++) {
+    边缘 += char
+
+    if (fill) {
+      中间 += char
+    } else {
+      中间 += ' '
+    }
+  }
+
+  边缘 += char
+  中间 += char
+
+  str += 边缘 + '\n'
+  for (var j = 0; j < w - 2; j++) {
+    str += 中间 + '\n'
+  }
+  str += 边缘
+
+  console.log(str);
+
+
+
 
 </script>
 
 <script id="ch0105/43">
   var n = 21
-  var other //另一个质数
 
-  for (var i= 2; i< n ;i++) {
-    if (n%i === 0) {
-      other = n / i
+  for (var i = 2; i < n; i++) {
+    if (n % i === 0) {
+      console.log(n / i);
+      break
 
+
+      /* //没必要，从小开始算
       if (other >= i) {
         console.log(other);
       } else {
         console.log(i);
-      }
+      } */
 
-      break
     }
   }
 </script>
@@ -1192,9 +1446,10 @@
     //判断是不是质数
 
     var flag = false
-    for (var j = 2; j<i; j++) {
+    for (var j = 2; j < i; j++) {
       if (i % j === 0) {
         flag = true
+        break
       }
     }
 
@@ -1214,19 +1469,39 @@
   var sum = 0
   var count = 0
 
-  for (var i = 1; i<= day ; i++) {
-    for (var j=1; j<=i; j++) {
-      sum += i
-      count++
+  for (var i = 1; i <= day; i++) {
+    for (var j = 1; j <= i; j++) {
+      sum += i //总金币
+      count++  //记录次数，一次就是一天
     }
 
-    if(count === day) {
+    if (count === day) {
       break
     }
   }
 
   console.log(sum);
 
+  ///////
+
+  var n = +prompt()
+
+  var sum = 0    //记录总金币
+  var coins = 1  //记录当前发放的硬币数
+  var days = 0   //记录当前硬币发放的天数
+
+  for (var i = 1; i <= n; i++) {
+    sum += coins
+    days++
+
+    //当发放的金币数等于发放的天数时，重置天数为0，金币加一
+    if (coins == days) {
+      days = 0
+      coins++
+    }
+  }
+
+  console.log(sum);
 </script>
 
 
@@ -1243,124 +1518,184 @@ lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
 sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt -->
 
 <script id="narcissistic">
-//输入一个数，判断是否是水仙花数
-  var n = +prompt()
-  var result
-  var sum = 0
-  var center = n
+  //输入一个数，判断是否是水仙花数
 
-  while (1) {
-    result = center % 10
-    center = (center - result) / 10
 
-    sum += (result ** 3)
+  //得到元素的位宽
+  function numLength(n) {
 
-    if (center === 0) {
-      break
+    var count = 0
+    var ge
+    do {
+      ge = n % 10
+      count++
+
+      n = (n - ge) / 10
+    } while (n > 0)
+
+    return count
+  }
+
+
+  function isNarcissistic(n) {
+
+    var width = numLength(n)
+    var sum = 0
+    var center = n
+    var result
+
+    while (center > 0) {
+      result = center % 10
+      center = (center - result) / 10
+
+      sum += (result ** width)
+    }
+
+    if (sum === n) {
+      return true
+    } else {
+      return false
     }
   }
 
-  if (sum === n) {
-    console.log('YES');
-  } else {
-    console.log('NO');
+
+  //运行时间不会久，因为一个数每次除10,100000也只需要5次10
+  for (var i = 1; i<= 100000; i++) {
+    if(isNarcissistic(i)) {
+      console.log(i);
+    }
   }
+
+  //
 
 </script>
 
 <script id="narcissistics">
-// 输出10000以内的水仙花数
+  // 输出10000以内的水仙花数
   var result
 
-  for (var i=100 ; i<= 1000; i++) {
+  for (var i = 100; i <= 1000; i++) {
 
-      var sum = 0
-      var center = i //保存i的值
-      while (1) {
-        result = center % 10
-        center = (center - result) / 10
+    var sum = 0
+    var center = i //保存i的值
+    while (1) {
+      result = center % 10
+      center = (center - result) / 10
 
-        sum += (result ** 3)
+      sum += (result ** 3)
 
-        if (center === 0) {
-          break
-        }
+      if (center === 0) {
+        break
       }
+    }
 
-      if (sum === i) {
-        console.log(i);
-      }
+    if (sum === i) {
+      console.log(i);
+    }
   }
 </script>
 
 <script id="palindrom">
-// 输入一个数，判断它数是否是回文数，如1223221
-  var n = +prompt()
+  // 输入一个数，判断它数是否是回文数，如1223221
 
-  var center = n
-  var back = '' //记录之后拼接的数
-  while(1) {
-    result = center % 10
-    center = (center - result) / 10
+  function palindrom (n) {
 
-    back += result
-    if (center == 0) {
-      break
+    var center = n
+    var back = '' //记录之后拼接的数
+    while (center > 0) {
+      result = center % 10
+      center = (center - result) / 10
+
+      back += result
+    }
+
+    if (n == back) {
+      return true
+    } else {
+      return false
     }
   }
 
-  if (n == back) {
-    console.log('YES');
-  } else {
-    console.log('NO');
-  }
 </script>
 
 <script id="weekday">
-//  输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
-  var year = 2018
-  var mouth = 6
-  var sum = 1 //该月的第一天，之前算的是2022年前所有年的天数和这一年8月份前的所有天数
+  //  输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
+//该月的第一天，之前算的是2022年前所有年的天数和这一年8月份前的所有天数
 
 
-  //判断这一年的mouth前多少天
-  for (var i= 1; i<mouth; i++) {
-    if (i==1||i==3||i==5||i==7||i==8||i==10||i==12) {
-      sum += 31
-    } else if (i==4 || i==6 || i==9 || i==11) {
-      sum += 30
-    } else if (i==2) {
-      if (year % 4===0 && year %100!==0|| year %400 ===0) {
-        sum += 29
-      } else {
-        sum += 28
-      }
+  //判断是否是闰年
+  function leapYear(n) {
+    if (n % 400 ===0) {
+      return true
+    }
+
+    if (n % 100 === 0) {
+      return false
+    }
+
+    if (n % 4 ===0) {
+      return true
+    }
+
+    return false
+  }
+
+  //判断前面几个月有多少天
+  function getMouthDays(year, mouth) {
+    switch(mouth) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        return 31
+      case 2:
+        if(leapYear(year)) {
+          return 29
+        } else {
+          return 28
+        }
+
+      default :
+        return 30
     }
   }
 
   //判断从0001年到2022年总的天数
-  for (var k = 1; k< year; k++) {
-    if (k % 4===0 && k %100!==0|| k %400 ===0){
-      sum += 366
-    } else {
-      sum += 365
+  function totalDays(year, mouth) {
+    var sum = 1
+
+    // for (var y = 1; y < year; y++) {
+    //   if (leapYear(y)) {
+    //     sum += 366
+    //   } else {
+    //     sum += 365
+    //   }
+    // }
+
+    //年总天数
+    var yy = year - 1
+    //全部默认是365天，是4的倍数加一天，是100的倍数减一天，是400的倍数加一天，都得向下取整
+    sum += yy * 365 + Math.floor(yy / 4) - Math.floor(yy / 100) + Math.floor(yy / 400)
+
+    for (var m = 1; m < mouth; m++) {
+      sum += getMouthDays(year, m)
     }
+
+    //0代表星期天，1-6
+    return sum % 7
   }
 
-  //循环7次，j代表星期号，总天数对7求模（0001年1月1日为星期一）
-  for (var j = 1; j<=7; j++) {
-    if (sum % 7 === j) {
-      console.log(j);
-    }
-  }
 </script>
 
 <script id="complete-number">
-// 输入一个数，判断它是否是完全数（自行查相关概念）
+  // 输入一个数，判断它是否是完全数（自行查相关概念）
   var n = +prompt()
-  var sum= 0
+  var sum = 0
 
-  for (var i = 1; i< n; i++) {
+  for (var i = 1; i < n; i++) {
     if (n % i === 0) {
       sum += i
     }
@@ -1371,14 +1706,50 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
   } else {
     console.log('NO');
   }
+
+  /////
+  //
+  function isCompleteNumber(n) {
+    var sum = 1 //不包含1，因为1会取得它本身
+    var end = Math.sqrt(n)
+
+    //对2-根号n之间求值，不包含它本身
+    for (var i = 2; i < end; i++) {
+      if (n % i === 0) {
+        var j = n / i
+        sum += (i + j)
+      }
+    }
+
+    if (end === Math.floor(end)) {
+      sum += end
+    }
+
+    if (sum === n) {
+      return true
+    }
+
+    return false
+  }
+
+
+  for (var i = 1; i <= 1000; i++) {
+    if (isCompleteNumber(i)) {
+      console.log(i);
+    }
+  }
+
+  isCompleteNumber()
+
+
 </script>
 
 <script id="complete-numbers">
-// 输出1000以内的完全数
-  for (var j = 1; j<=1000; j++) {
-    var sum= 0
+  // 输出1000以内的完全数
+  for (var j = 1; j <= 1000; j++) {
+    var sum = 0
 
-    for (var i = 1; i< j; i++) {
+    for (var i = 1; i < j; i++) {
       if (j % i === 0) {
         sum += i
       }
@@ -1391,35 +1762,56 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
 </script>
 
 <script id="prime">
-// 输入一个数，判断它是否是素数
+  // 输入一个数，判断它是否是素数
   var n = +prompt()
   var flag = false
 
-  for (var i = 2; i< n; i++) {
+  for (var i = 2; i < n; i++) {
     if (n % i === 0) {
       flag = true
       break
     }
   }
 
-  if (n==1){
-  console.log('NO');
-  }else if (!flag) {
+  if (n == 1) {
+    console.log('NO');
+  } else if (!flag) {
     console.log('YES');
   } else {
     console.log('NO');
   }
 
+
+  //////
+  function isPrime(n) {
+
+
+    //不用考虑2,2不会进循环体
+    var end = Math.sqrt(n)
+    for (var i = 2; i <= end; i++) {
+      if (n % i === 0) {
+        return false
+      }
+    }
+    return true
+  }
+
+  for (var i = 1; i <= 100; i++) {
+    if (isPrime(i)) {
+      console.log(i);
+    }
+  }
+
 </script>
 
 <script id="primes">
-// 输出100以内的素数
+  // 输出100以内的素数
 
 
-  for (var j=2; j<=100; j++) {
+  for (var j = 2; j <= 100; j++) {
 
     var flag = false
-    for (var i = 2; i< j; i++) {
+    for (var i = 2; i < j; i++) {
       if (j % i === 0) {
         flag = true
         break
@@ -1439,51 +1831,91 @@ sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能�
 </script>
 
 <script id="lcf&lcm">
-// 输入两个数，输出它们的最大公约数和最小公倍数
-  var n = +prompt()
-  var m = +prompt()
+  // 输入两个数，输出它们的最大公约数和最小公倍数
   var max = -Infinity  //最大公约数
-  var min =  Infinity //最小公倍数
-
+  var min = Infinity //最小公倍数
 
   //最大公约数
-  for (var i= 1; i> 0; i++) {
-    if (n%i ===0 && m%i ===0) {
-      if (i > max) {
-        max = i
-      }
+
+  function max (m, n) {
+    if (n > m) {
+      var center = n
+      n = m
+      m = center
     }
 
-    if (i === n||i === m) {
-      console.log(max);
-      break
+    for (var i = n; i>0; i--) {
+      if (m%i ===0 && n%i ===0) {
+        return i
+      }
     }
   }
 
-  //最小公倍数
-  for (var i= 1; i> 0; i++) {
-    if (i % n===0&& i%m===0) {
-      if (i<min) {
-        min = i
-        console.log(min);
-        break
+
+  //最大公约数，辗转相除法
+  function max(m, n) {
+    do {
+      var c = m % n
+      m = n
+      n = c
+    } while (c !== 0)
+
+    return m
+  }
+    //最大公约数，辗转相减法
+    function max(m, n) {
+    do {
+      if (n > m) {
+        var center = n
+        n = m
+        m = center
       }
-    }
+
+      m = m - n
+    } while (m !== 0)
+    return n
+  }
+
+
+
+
+  //最小公倍数
+  function min(m, n) {
+    return m * n / max(m, n)
   }
 
 </script>
 
 
-<!-- 未做 -->
-<script id="sqrt">
-// 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
-  var n = +prompt()
-  var result
 
-  for (var i = 1; i<= n; i+= 0.001) {
-    result = i**2
-    if (Math.ceil(result.toFixed(3)) === n) {
-      console.log(i);
+<script id="sqrt">
+  // 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
+
+  //二分法
+  function sqrt(n) {
+    var start = 0
+
+    //也能处理1
+    var end = Math.max(2,n)
+    var center = (start + end) / 2
+
+    //当上下限离的够近时结束
+    while (end - start > 0.0000001) {
+
+      center = (start + end) / 2
+
+      //center 和 根号2 同时平方
+      if (center ** 2 < n) {
+        //把下限变为center
+        start = center
+      } else if (center ** 2 > n ){
+        //把上限变为center
+        end = center
+      } else if (center ** 2 == n) {
+        return center
+      }
     }
+
+    return center
   }
 </script>

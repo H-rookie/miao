@@ -1,0 +1,253 @@
+<script>
+    var isUgly = function (n) {
+
+
+        if (n <= 0) {
+            return false
+        }
+
+        //求n的所有因数
+        for (var i = 2; i <= n; i++) {
+
+            //因数
+            if (n % i === 0) {
+
+                //判断因数是不是质数
+                flag = 0
+                status = 0
+                for (var j = 2; j < i; j++) {
+
+                    if (i % j === 0) {
+                        flag = 1
+                        break
+                    }
+
+                }
+
+                if (!flag) {
+                    if (i !== 2 || i !== 3 || i !== 5) {
+                        status = 1
+                    }
+                }
+            }
+        }
+
+
+        if (!status) {
+            return true
+        } else {
+            return false
+        }
+    };
+</script>
+
+<script>
+    //判断是不是4的幂
+
+    function isPowerOfFour(n) {
+        for (var i = 0; ; i++) {
+            var result = 4 ** i
+
+            if (result === n) {
+                return true
+            }
+
+            if (result > n) {
+                return false
+            }
+        }
+    }
+
+    function isPowerOfFour(n) {
+        var result = n / 4
+
+        if (n == 1) {
+            return true
+        }
+
+        if (result == 1) {
+            return true
+        }
+
+        if (result < 1) {
+            return false
+        }
+
+        return isPowerOfFour(result)
+    }
+
+</script>
+
+<script>
+    //快乐数
+    function isHappy(n) {
+        var ge
+        var sum = 0
+        while (n > 0) {
+            ge = n % 10
+            n = (n - ge) / 10
+            sum += Math.pow(ge, 2)
+        }
+
+        if (sum === 1) {
+            return true
+        } else if (sum < 10) {
+            return false
+        } else {
+            return isHappy(sum)
+        }
+
+    }
+
+</script>
+
+<script>
+    //判断n以内的质数的数量
+
+    function primeCounts(n) {
+
+        var count = 0
+
+        if (n > 2) {
+            count++
+        }
+
+        //n以内的数,从3开始，偶数除了2都不是质数
+        for (var i = 3; i < n; i += 2) {
+
+
+            var end = Math.sqrt(i)
+            var flag = 0
+            //判断质数
+            for (var j = 2; j <= end; j++) {
+                if (i % j === 0) {
+                    flag = 1
+                    break
+                }
+            }
+
+            if (!flag) {
+                count++
+            }
+        }
+
+        return count
+    }
+</script>
+
+<script>
+    //实现 pow(x, n) ，即计算 x 的整数 n 次幂函数（即，xn ）。
+
+    function pow(x, n) {
+        if (n === 0) {
+            return 1
+        } else {
+            return pow(x, n - 1) * x
+        }
+    }
+</script>
+
+<script>
+    //数字反转
+
+    function reverse(n) {
+
+        var reverse = ''
+
+        if (n < 0) {
+            n = -n
+            reverse = '-'
+        }
+
+        var ge
+        while (n > 0) {
+            ge = n % 10
+            n = (n - ge) / 10
+            reverse += ge
+        }
+
+        return reverse
+    }
+</script>
+
+<script>
+    //回文数
+
+    function isPalindrome(n) {
+
+        var center = n
+        var back = '' //记录之后拼接的数
+        while (center > 0) {
+            result = center % 10
+            center = (center - result) / 10
+
+            back += result
+        }
+
+        if (n == back) {
+            return true
+        } else {
+            return false
+        }
+
+    }
+</script>
+
+<script>
+//输入一个二进制数，有多少个1输出多少个1
+    var hammingWeight = function (n) {
+
+        var ge
+        var count = 0
+        do {
+            //不断对2求模，结果是二进制的一位
+            ge = n % 2
+
+            //下一次计算是除以二取整后的数
+            n = Math.floor(n / 2)
+            if (ge === 1) {
+                count++
+            }
+        } while (n > 0)
+
+        return count
+    };
+</script>
+
+<script>
+//汉明距离，二进制表示后的数，对应位上数字不同的数量（200130和200432不同的有2位）
+    var hammingDistance = function (x, y) {
+    var count = 0
+
+
+    //让x永远是最大的那一个
+    if (x < y) {
+        var c = x 
+        x = y
+        y = c
+    }
+
+    while (x > 0) {
+        xNum = x % 2
+        yNum = y % 2
+        x = Math.floor(x / 2)
+        y = Math.floor(y / 2)
+        if (xNum !== yNum) {
+            count++
+        }
+    }
+    return count
+};
+</script>
+
+<script>
+
+num = sum
+</script>
+
+
+<script>
+//丑数
+
+
+</script>

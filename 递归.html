@@ -1,0 +1,93 @@
+<script>
+    //求第几个奇数和
+    //s(n) = s(n-1) + a(n)
+
+    function a(n) {
+        return 2 * n - 1
+    }
+
+    function s(n) {
+
+        if (n === 1) {
+            return 1
+        }
+
+        s(n - 1) + a(n)
+    }
+
+
+    //n个奇数和
+    //第n个奇数 和 n-1个奇数和
+</script>
+
+
+<script>
+    //阶乘
+
+    function fact(n) {
+        if (n == 1) {
+            return 1
+        }
+
+        return fact(n - 1) * n
+    }
+
+    fact(5)
+
+    //n个数的1*2*3*4*5*n
+    //n * n-1个数的1*2*3*4*5*n-1
+
+</script>
+
+<script>
+    //反向输出输入的数
+
+    function reserve(n) {
+        if (n == 0) {
+            return
+        }
+
+        for (var i = 1; i < 2; i++)
+            var n = +prompt()
+        reserver(n - 1)
+        console.log(n);
+    }
+
+//输入n个数倒序输出：
+//  输入一个数a；
+//  数日n-1个数并倒序输出
+//  输出a
+</script>
+
+<script>
+    //输出x的n次方
+    //输出x * x的n-1次方
+</script>
+
+<script>
+    //汉诺塔
+    //移动n个从1到3
+
+    //把n-1个从1移动2
+    //把第n个从1移到3
+    //把n-1个从2移到3
+
+
+    //把n个盘从起始位移动到结束位
+    function hanoi(n, start, end) {
+        if (n == 1) {
+            console.log(start, '>', end);
+        }
+
+        var mid = 6 - start - end
+        hanoi(n - 1, start, mid)
+        console.log(start, '>', end);
+        hanoi(n - 1, mid, end)
+
+    }
+</script>
+
+<script>
+
+
+</script>
