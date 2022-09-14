@@ -1,248 +1,277 @@
 <script>
-    var isUgly = function (n) {
+
+  //把2,3,5的因子全部排除，剩1就是丑数
+  var isUgly = function (n) {
+    if (n < 1) {
+      return false
+    }
+
+    while (n % 2 === 0) {
+      n = n / 2
+    }
+    while (n % 3 === 0) {
+      n = n / 3
+    }
+    while (n % 5 === 0) {
+      n = n / 5
+    }
+
+    if (n === 1) {
+      return true
+    }
+
+    return false
+  };
+</script>
+
+<script>
+  //判断是不是4的幂
+
+  function isPowerOfFour(n) {
+    for (var i = 0; ; i++) {
+      var result = 4 ** i
+
+      if (result === n) {
+        return true
+      }
+
+      if (result > n) {
+        return false
+      }
+    }
+  }
+
+  function isPowerOfFour(n) {
+    var result = n / 4
+
+    if (n == 1) {
+      return true
+    }
+
+    if (result == 1) {
+      return true
+    }
+
+    if (result < 1) {
+      return false
+    }
+
+    return isPowerOfFour(result)
+  }
+
+  //2**35次方是在要求范围内的最大整数
+  var isPowOfTwo2 = function (n) {
+    if (n < 1) {
+      return false
+    }
+
+    if (2 ** 35 % n === 0) {
+      return true
+    }
+
+    return false
+  }
 
 
-        if (n <= 0) {
+
+</script>
+
+<script>
+  //快乐数
+  function isHappy(n) {
+    var ge
+    var sum = 0
+    while (n > 0) {
+      ge = n % 10
+      n = (n - ge) / 10
+      sum += Math.pow(ge, 2)
+    }
+
+    if (sum === 1) {
+      return true
+    } else if (sum === 4) {  //快乐数死循环的话，一定会陷入一个循环，有4
+      return false
+    } else {
+      return isHappy(sum)
+    }
+  }
+
+
+  //第二种方法
+  var isHappy = function (n) {
+    var seem = []  //用数组保存已经出现过的sum
+
+
+    while (1) {
+      var ge
+      var sum = 0
+      while (n > 0) {
+        ge = n % 10
+        n = (n - ge) / 10
+        sum += Math.pow(ge, 2)
+      }
+
+      if (sum === 1) {
+        return true
+      } else {
+        n = sum
+
+        //遍历数组，如果再次出现之前出现过的数字，就陷入循环
+        for (var i = 0; i < seem.length; i++) {
+          if (sum === seem[i]) {
             return false
+          }
         }
 
-        //求n的所有因数
-        for (var i = 2; i <= n; i++) {
+        seem.push(sum)
+      }
+    }
+  };
 
-            //因数
-            if (n % i === 0) {
-
-                //判断因数是不是质数
-                flag = 0
-                status = 0
-                for (var j = 2; j < i; j++) {
-
-                    if (i % j === 0) {
-                        flag = 1
-                        break
-                    }
-
-                }
-
-                if (!flag) {
-                    if (i !== 2 || i !== 3 || i !== 5) {
-                        status = 1
-                    }
-                }
-            }
-        }
-
-
-        if (!status) {
-            return true
-        } else {
-            return false
-        }
-    };
 </script>
 
 <script>
-    //判断是不是4的幂
+  //判断n以内的质数的数量
 
-    function isPowerOfFour(n) {
-        for (var i = 0; ; i++) {
-            var result = 4 ** i
+  function primeCounts(n) {
 
-            if (result === n) {
-                return true
-            }
+    var count = 0
 
-            if (result > n) {
-                return false
-            }
-        }
+    if (n > 2) {
+      count++
     }
 
-    function isPowerOfFour(n) {
-        var result = n / 4
+    //n以内的数,从3开始，偶数除了2都不是质数
+    for (var i = 3; i < n; i += 2) {
 
-        if (n == 1) {
-            return true
+
+      var end = Math.sqrt(i)
+      var flag = 0
+      //判断质数
+      for (var j = 2; j <= end; j++) {
+        if (i % j === 0) {
+          flag = 1
+          break
         }
+      }
 
-        if (result == 1) {
-            return true
-        }
-
-        if (result < 1) {
-            return false
-        }
-
-        return isPowerOfFour(result)
+      if (!flag) {
+        count++
+      }
     }
 
+    return count
+  }
 </script>
 
 <script>
-    //快乐数
-    function isHappy(n) {
-        var ge
-        var sum = 0
-        while (n > 0) {
-            ge = n % 10
-            n = (n - ge) / 10
-            sum += Math.pow(ge, 2)
-        }
+  //实现 pow(x, n) ，即计算 x 的整数 n 次幂函数（即，xn ）。
 
-        if (sum === 1) {
-            return true
-        } else if (sum < 10) {
-            return false
-        } else {
-            return isHappy(sum)
-        }
+  function pow(x, n) {
+    if (n === 0) {
+      return 1
+    } else {
+      return pow(x, n - 1) * x
+    }
+  }
+</script>
 
+<script>
+  //数字反转
+
+  function reverse(n) {
+
+    var reverse = ''
+
+    if (n < 0) {
+      n = -n
+      reverse = '-'
     }
 
-</script>
-
-<script>
-    //判断n以内的质数的数量
-
-    function primeCounts(n) {
-
-        var count = 0
-
-        if (n > 2) {
-            count++
-        }
-
-        //n以内的数,从3开始，偶数除了2都不是质数
-        for (var i = 3; i < n; i += 2) {
-
-
-            var end = Math.sqrt(i)
-            var flag = 0
-            //判断质数
-            for (var j = 2; j <= end; j++) {
-                if (i % j === 0) {
-                    flag = 1
-                    break
-                }
-            }
-
-            if (!flag) {
-                count++
-            }
-        }
-
-        return count
+    var ge
+    while (n > 0) {
+      ge = n % 10
+      n = (n - ge) / 10
+      reverse += ge
     }
+
+    return reverse
+  }
 </script>
 
 <script>
-    //实现 pow(x, n) ，即计算 x 的整数 n 次幂函数（即，xn ）。
+  //回文数
 
-    function pow(x, n) {
-        if (n === 0) {
-            return 1
-        } else {
-            return pow(x, n - 1) * x
-        }
+  function isPalindrome(n) {
+
+    var center = n
+    var back = '' //记录之后拼接的数
+    while (center > 0) {
+      result = center % 10
+      center = (center - result) / 10
+
+      back += result
     }
-</script>
 
-<script>
-    //数字反转
-
-    function reverse(n) {
-
-        var reverse = ''
-
-        if (n < 0) {
-            n = -n
-            reverse = '-'
-        }
-
-        var ge
-        while (n > 0) {
-            ge = n % 10
-            n = (n - ge) / 10
-            reverse += ge
-        }
-
-        return reverse
+    if (n == back) {
+      return true
+    } else {
+      return false
     }
+
+  }
 </script>
 
 <script>
-    //回文数
+  //输入一个二进制数，有多少个1输出多少个1
+  var hammingWeight = function (n) {
 
-    function isPalindrome(n) {
+    var ge
+    var count = 0
+    do {
+      //不断对2求模，结果是二进制的一位
+      ge = n % 2
 
-        var center = n
-        var back = '' //记录之后拼接的数
-        while (center > 0) {
-            result = center % 10
-            center = (center - result) / 10
+      //下一次计算是除以二取整后的数
+      n = Math.floor(n / 2)
+      if (ge === 1) {
+        count++
+      }
+    } while (n > 0)
 
-            back += result
-        }
-
-        if (n == back) {
-            return true
-        } else {
-            return false
-        }
-
-    }
+    return count
+  };
 </script>
 
 <script>
-//输入一个二进制数，有多少个1输出多少个1
-    var hammingWeight = function (n) {
-
-        var ge
-        var count = 0
-        do {
-            //不断对2求模，结果是二进制的一位
-            ge = n % 2
-
-            //下一次计算是除以二取整后的数
-            n = Math.floor(n / 2)
-            if (ge === 1) {
-                count++
-            }
-        } while (n > 0)
-
-        return count
-    };
-</script>
-
-<script>
-//汉明距离，二进制表示后的数，对应位上数字不同的数量（200130和200432不同的有2位）
-    var hammingDistance = function (x, y) {
+  //汉明距离，二进制表示后的数，对应位上数字不同的数量（200130和200432不同的有2位）
+  var hammingDistance = function (x, y) {
     var count = 0
 
 
     //让x永远是最大的那一个
     if (x < y) {
-        var c = x 
-        x = y
-        y = c
+      var c = x
+      x = y
+      y = c
     }
 
     while (x > 0) {
-        xNum = x % 2
-        yNum = y % 2
-        x = Math.floor(x / 2)
-        y = Math.floor(y / 2)
-        if (xNum !== yNum) {
-            count++
-        }
+      xNum = x % 2
+      yNum = y % 2
+      x = Math.floor(x / 2)
+      y = Math.floor(y / 2)
+      if (xNum !== yNum) {
+        count++
+      }
     }
     return count
-};
+  };
 </script>
 
 <script>
 
-num = sum
+  num = sum
 </script>
 
 
@@ -250,4 +279,888 @@ num = sum
 //丑数
 
 
+</script>
+
+
+<script>
+  //258.给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。返回这个结果。
+
+  function addDigits(num) {
+
+  }
+</script>
+
+
+<script>
+  // 给你一个整数 n ，找出从 1 到 n 各个整数的 Fizz Buzz 表示，并用字符串数组 answer（下标从 1 开始）返回结果
+  function fizzBuzz(n) {
+    var a = []
+    for (var i = 1; i <= n; i++) {
+
+      if (i % 3 === 0 && i % 5 === 0) {
+        a.push('FizzBuzz')
+      } else if (i % 3 === 0) {
+        a.push('Fizz')
+      } else if (i % 5 === 0) {
+        a.push('Buzz')
+      } else {
+        a.push(String(i))
+      }
+    }
+
+    return a
+  }
+</script>
+
+
+<script>
+  // 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回
+  //它们的数组下标。
+
+  function twoNumber(nums, target) {
+    for (var i = 0; i < nums.length; i++) {
+      for (var j = nums.length - 1; j > i; j--) {
+        if (nums[i] + nums[j] === target) {
+          var arr = []
+          arr.push(i, j)
+          return arr
+        }
+      }
+    }
+  }
+</script>
+
+
+<script>
+  // 给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 。
+  var removeDuplicates = function (nums) {
+
+    for (var i = 0; i < nums.length; i++) {
+      if (nums[i] === nums[i + 1]) {
+        nums.splice(i, 1) //从当前下标开始删除一个
+        i = -1            //下标发生变化，重新遍历数组,运行完还要i++
+      }
+    }
+
+    return nums.length
+  };
+
+  //第二种方法：只要和前一个数字不一样，就把该数字放到前面（预留有不重复的数字的位置）
+  var removeDuplicates = function (nums) {
+
+    var position = 1  //下一个不重复的数字的位置
+    for (var i = 1; i < nums.length; i++) {
+      if (nums[i] !== nums[i - 1]) {
+        nums[position] = nums[i]
+        position++
+      }
+    }
+
+    return position
+  }
+
+</script>
+
+<script>
+  // 给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
+
+  var plusOne = function (digits) {
+
+    //拿到1234字符串
+    var str = ''
+    for (var i = 0; i < digits.length; i++) {
+      str += digits[i]
+    }
+
+    str = BigInt(str)   //如果给很大的数就不行，精确不了
+    str++
+
+    var result = []
+    do {
+      var ge = str % 10n
+      str = (str - ge) / 10n
+      result.unshift(Number(ge))
+    } while (str > 0)
+
+    return result
+  };
+
+
+  //正解
+
+  var plusOne = function (digits) {
+
+    digits[digits.length - 1]++
+
+    for (var i = digits.length - 1; i >= 0; i--) {
+      if (digits[i] == 10) {
+        digits[i] = 0
+        digits[i - 1]++  //当[9]的时候，i = 0，i-1是undefined，++是undefined，所以前一位不会+1，得另外处理
+      } else {
+        return digits
+      }
+    }
+
+    if (digits[0] == 10) {
+      digits[0] = 0
+      digits.unshift(1)
+    }
+
+    return digits
+  }
+</script>
+
+
+<script>
+  //求平方根整数
+
+  function sqrt(x) {
+
+    if (x < 2) {
+      return x
+    }
+
+    var low = 0
+    var high = x
+
+    while (high - low > 1) {
+      center = Math.floor((low + high) / 2)
+      if (center * center < x) {
+        low = center
+      } else if (center * center > x) {
+        high = center - 1            //当center的平方大于x时，center这个整数可以排除
+      } else if (center * center == x) {
+        return center                //当center的平方小于x时，不能排除center这个整数，因为4小于4.4，最后的结果是4
+      }
+    }
+
+    if (high * high > x) {
+      return low
+    } else {
+      return high
+    }
+  }
+</script>
+
+
+<script>
+  //幂运算
+
+  //第一种写法
+  function myPow(x, n) {
+    if (n < 0) {
+      return myPow(1 / x, -n)
+    }
+
+    if (n == 0) {
+      return 1
+    }
+
+    if (n % 2 === 0) {
+      var result = myPow(x, n / 2)
+      return result * result
+    } else {
+      var result = myPow(x, (n - 1) / 2)
+      return result * result * x
+    }
+  }
+
+
+  //第二种写法
+  function myPow(x, n) {
+    if (n < 0) {
+      return myPow(1 / x, -n)
+    }
+
+    if (n == 0) {
+      return 1
+    }
+
+    if (n % 2 === 0) {
+      return myPow(x * x, n / 2)
+    } else {
+      return myPow(x * x, (n - 1) / 2) * x
+    }
+  }
+
+
+  //第三种写法
+
+  function myPow(x, n) {
+
+    if (n < 0) {
+      return myPow(x, -n)
+    }
+    if (n == 0) {
+      return 1
+    }
+    var X = x
+    var a = 1 //记录此时x的次方
+    var e = n //记录距离n还有多远
+    var result = 1
+    while (1) {
+
+      if (a * 2 > e) {
+        result *= x
+        e = e - a
+        x = X
+        a = 1
+
+        if (e == 0) {
+          break
+        } else {
+          continue  //为什么加上这个就能简短时间？？？
+        }
+      }
+
+      x *= x
+      a *= 2
+    }
+
+    return result
+  }
+
+
+  //第四种写法
+
+  function myPow(x, n) {
+    var result = 1
+    var s = x
+    while (n > 0) {
+
+      var ge = n % 2
+      n = (n - ge) / 2
+
+      if (ge) {
+        result *= s
+      }
+
+      s = s * s
+    }
+
+    return result
+  }
+
+</script>
+
+
+<script>
+  // 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+
+
+  var moveZeroes = function (nums) {
+
+    var position = 0
+    for (var i = 0; i < nums.length; i++) {
+      if (nums[i] !== 0) {
+        nums[position] = nums[i]
+        position++
+      }
+    }
+
+    while (position < nums.length) {
+      num[position] = 0
+      position++
+    }
+  }
+</script>
+
+<script>
+  // 给你一个下标从 1 开始的整数数组 numbers ，该数组已按 非递减顺序排列  ，请你从数组中找出满足相加之和等于目标数 target 的两个数
+
+
+  //第一种方法：只使用于有序递增序列
+  var twoSum = function (numbers, target) {
+    var i = 0
+    var j = numbers.length - 1
+
+    while (i < j) {
+
+      if (numbers[i] + numbers[j] > target) {
+        j = j - 1
+      } else if (numbers[i] + numbers[j] < target) {
+        i = i + 1
+      }
+
+      if (numbers[i] + numbers[j] === target) {
+        return [i + 1, j + 1]
+      }
+    }
+  };
+
+  //第二种方法：可用于非递增数组
+  var twoSum = function (numbers, target) {
+    //
+
+    var center = []
+
+    //对应数字保存下标
+    for (var i = 0; i < numbers.length; i++) {
+      center[numbers[i]] = i
+    }
+
+    for (var i = 0; i < numbers.length; i++) {
+      var distance = target - numbers[i]
+      if (center[distance] > 0 && distance !== numbers) {
+        return [i, center[distance]]
+      }
+    }
+  }
+
+
+  //第二种方法改进：可用于非递增数组
+  var twoSum = function (numbers, target) {
+
+    var center = []
+
+    for (var i = 0; i < numbers.length; i++) {
+      var distance = target - numbers[i]
+      if (center[distance] > 0) {
+        return [i, center[distance]]
+      }
+
+      center[numbers[i]] = i  //记录当前数字所在位置
+    }
+  }
+
+
+  //第三种方法：用循环遍历
+  var twoSum = function (nums, target) {
+    for (var i = 0; i < nums.length - 1; i++) {
+      for (var j = i + 1; j < nums.length; j++) {
+        if (nums[i] + nums[j] === target) {
+
+          return [i, j]
+        }
+      }
+    }
+  };
+</script>
+
+<script>
+  //方法一
+  var multiply = function (num1, num2) {
+    var num1s = []
+    var sum = '0'
+
+    //保存num1*1~9的到数组中
+    for (var i = 0; i < 10; i++) {
+      num1s.push(sum)
+      sum = addStrings(sum, num1)
+    }
+
+    var zeros = 0
+    var result = '0'
+    for (var i = num2.length - 1; i >= 0; i--) {
+      var digit = num2[i]
+      var re = num1s[digit]  //取出数组对应下标的值
+
+      if (re !== '0') {
+
+        for (var j = 0; j < zeros; j++) {
+          re = re + '0'
+        }
+      }
+
+      zeros++
+      result = addStrings(result, re)
+    }
+
+    return result
+  }
+
+
+  //方法二
+  var multiply = function (num1, num2) {
+    var num1s = []
+    var sum = '0'
+
+    //保存num1*1~9的到数组中
+    for (var i = 0; i < 10; i++) {
+      num1s.push(sum)
+      sum = addStrings(sum, num1)
+    }
+
+    var zeros = 0
+    var product = []  //保存每一位计算后的值，最后相加
+    var result = '0'
+
+    for (var i = num2.length - 1; i >= 0; i--) {
+      var digit = num2[i]
+      var re = num1s[digit]  //取出数组对应下标的值
+
+      if (re !== '0') {
+
+        //补0
+        for (var j = 0; j < zeros; j++) {
+          re = re + '0'
+        }
+      }
+
+      zeros++
+      product.push(re)
+    }
+
+    for (var i = 0; i < product.length; i++) {
+      result = addStrings(result, product[i])
+    }
+
+    return result
+  }
+
+
+
+  var addStrings = function (num1, num2) {
+    var i = num1.length - 1 //num1的最后一位的下标
+    var j = num2.length - 1 //num2的最后一位的下标
+    var next = 0
+    var result = ''
+
+    for (; i >= 0 || j >= 0; i--, j--) {
+      var last1 = Number(num1[i]) || 0 //到下标取不到的时候，undefined无法计算
+      var last2 = Number(num2[j]) || 0
+      var sum = last2 + last1 + next //先加再求这位的结果
+
+      var leave = sum % 10   //这位的结果
+      var next = (sum - leave) / 10  //进位
+
+      result = leave + result
+    }
+
+    if (next > 0) {
+      result = next + result
+    }
+
+    return result
+  };
+</script>
+
+
+
+<script>
+  var reverseBits = function (n) {
+    var result = 0
+    for (var i = 0; i < 32; i++) {
+      var ge = n & 1   //取到最后一位数
+      n = n >>> 1     //补1的话位数会越来越多
+      result = result << 1 | ge  //左移空出一位补0和ge|,ge是多少就加到
+    }
+
+    return result >>> 0  //无符号整数，颠倒之后的最高位可能是1，会成负数
+  };
+</script>
+
+<script>
+  var merge = function (nums1, m, nums2, n) {
+
+    var i = m - 1
+    var j = n - 1
+    var cursor = m + n - 1
+
+    while (j >= 0 && i >= 0) {
+      if (nums1[i] > nums2[j]) {
+        nums1[cursor] = nums1[i]
+        i--
+      } else {
+        nums1[cursor] = nums2[j]
+        j--
+      }
+      cursor--
+    }
+
+    while (j >= 0) {
+      nums1[cursor] = nums2[j]
+      j--
+      cursor--
+    }
+
+    while (i >= 0) {
+      nums1[cursor] = nums1[i]
+      i--
+      cursor--
+    }
+
+    return nums1
+
+  }
+</script>
+
+
+<script>
+  var addStrings = function (num1, num2) {
+
+    var i = num1.length - 1  //num1最后一位的下标
+    var j = num2.length - 1
+    var result = ''
+
+    var up = 0
+    for (; i >= 0 || j >= 0; i--, j--) {
+
+      var n1 = Number(num1[i]) || 0
+      var n2 = Number(num2[j]) || 0
+      var sum = n1 + n2 + up
+
+
+      var left = sum % 10         //留下的
+      up = (sum - left) / 10  //进位     ——————不需要对if === 10
+
+      result = left + result
+    }
+
+    return result
+  }
+
+</script>
+
+<script>
+  var addDigits = function (num) {
+
+    var sum = 0
+    while (num > 0) {
+      var ge = num % 10
+      num = (num - ge) / 10
+
+      sum += ge
+    }
+
+    if (sum > 10) {
+      return addDigits(sum)
+    } else {
+      return sum
+    }
+  }
+
+</script>
+
+<script>
+
+  //无法保留每个数组项的false，只能使用数组
+  var missingNumber = function (nums) {
+
+    var flags = Array(nums.length + 1).fill(false)
+
+    for (var i = 0; i < nums.length; i++) {
+      flags[nums[i]] = true
+    }
+
+    for (var i = 0; i < flags.length; i++) {
+      if (!flags[i]) {
+        return i
+      }
+    }
+  }
+</script>
+
+<script>
+
+  var singleNumber = function (nums) {
+
+    //比较nums中的最大数，作为新数组的长度
+    max = 0
+    for (var i = 0; i < nums.length; i++) {
+      if (nums[i] > max) {
+        max = nums[i]
+      }
+    }
+
+    var counts = [nums[0]][]
+
+    for (var i = 0; i < nums.length; i++) {
+
+      for (var j = 0; j < counts.length; j++) {
+
+        if (counts[j] === nums[i]) {
+          count.pop()
+          break
+        }
+      }
+    }
+
+
+
+  }
+</script>
+
+<script>
+  var countAndSay1 = function (n) {
+
+  }
+</script>
+
+
+<script>
+
+  //拆解字符串str的第n个数字
+  function extract(str, n) {
+
+    //用遇到的空格数量来标记作为数字出现的开始，比如要拿出'123 234 345 456' 的第3项，只需遇到两个空格就结束，并拿到空格的下标，作为开始
+    var space = 0
+    for (var i = 0; i < str.length && space < n - 1; i++) {
+      if (str[i] === ' ') {
+        space++
+      }
+    }
+
+    var num = ''
+    for (var j = i; j < str.length; j++) {  //从空格的后一个数开始，直到遇到空格结束
+      if (str[j] !== ' ') {
+        num += str[j]
+      } else {
+        break
+      }
+    }
+
+    return Number(num)
+  }
+</script>
+
+<script>
+  var countAndSay = function (n) {
+    if (n == 1) {
+      return '1'
+    }
+
+    var n_1 = countAndSay(n - 1)
+
+    var result = ''
+    var count = 1
+    for (var i = 1; i < n_1.length; i++) {
+
+      if (n_1[i - 1] !== n_1[i]) {
+
+        result = result + count + n_1[i - 1]
+        count = 1
+      } else {
+        count++
+      }
+    }
+
+    result += count + n_1[i - 1]
+
+    return result
+  }
+</script>
+
+<script id='88'>
+  //合并两个有序数组
+
+  var merge = function (num1, m, num2, n) {
+
+    var i = m - 1
+    var j = n - 1
+    var k = m + n - 1
+
+    while (i >= 0 && j >= 0) {
+      if (num1[i] > num2[j]) {
+        num1[k] = num1[i]
+        k--
+        i--
+      } else {
+        num1[k] = num1[j]
+        k--
+        j--
+      }
+    }
+
+    while (i >= 0) {
+      num1[k] = num1[i]
+      k--
+      i--
+    }
+
+    while (j >= 0) {
+      num1[k] = num1[j]
+      k--
+      j--
+    }
+
+    return num1
+  }
+
+</script>
+
+<script id='63'>
+  //网格中有障碍物，怎么从左上角走到右下角，有多少个路径
+  var uniquePathsWithObstacles = function (obstacleGrid) {
+
+    var change = obstacleGrid  //用change代替obstacleGrid数组
+
+
+    var width = change.length  //数组的宽，即有几行
+    var high = change[0].length //数组的高，每一行有多少个数
+
+    var count = width * high //新数组一共有几个数
+    var counts = Array(count) //用来记录每个位置可能的走法
+
+    for (var i = 0; i < width; i++) {
+      for (var j = 0; j < high; j++) {
+
+
+        if (change[i][j] === 0) {
+
+          //判断第一个数是不是障碍
+          if (i === 0 && j === 0) {
+            counts[0] = 1
+            continue
+          }
+
+          var p = i * high + j  //转化为一维数组后的坐标
+
+          if (p % high === 0) {     //当计算出的值是边缘的位置时，不能等于前一个，因为一维数组的前一项能访问到
+            counts[p] = (counts[p - high] || 0)
+          } else {
+            counts[p] = (counts[p - high] || 0) + (counts[p - 1] || 0)
+          }
+
+        } else {
+          var p = i * high + j
+          counts[p] = 0
+        }
+      }
+    }
+
+    return counts[counts.length - 1]
+  }
+
+  var uniquePathsWithObstacles = function (obstacleGrid) {
+
+    var change = obstacleGrid  //用change代替obstacleGrid数组
+
+    if (change[0, 0] === 1) {
+      return 0
+    }
+
+    var width = change.length  //数组的宽，即有几行
+    var high = change[0].length //数组的高，每一行有多少个数
+
+    var counts = Array(width) //用来记录每个位置可能的走法
+
+    for (var i = 0; i < width; i++) {
+      counts[i] = Array(high)
+    }
+
+    for (var i = 0; i < width; i++) {
+      for (var j = 0; j < high; j++) {
+
+        //判断有没有遇到障碍
+        if (change[i][j] === 0) {
+
+          //给第一个数赋值
+          if (i === 0 && j === 0) {
+            counts[i][j] = 1
+            continue
+          }
+
+          //第一行和第一列另外考虑
+          if (j === 0) {
+            counts[i][j] = counts[i - 1][j]
+          } else if (i === 0) {
+            counts[i][j] = counts[i][j - 1]
+          } else {
+            counts[i][j] = counts[i - 1][j] + counts[i][j - 1]
+          }
+
+        } else {
+          counts[i][j] = 0
+        }
+      }
+    }
+
+    return counts[width - 1][high - 1]
+  }
+</script>
+
+<script id='367'>
+  //有效的完全平方数
+
+  function isPerfectSquare(n) {
+
+    var count = 0
+    var end = Math.sqrt(n)
+    for (var i = 1; i < n; i++) {
+      if (n % i === 0) {
+        count += 2
+      }
+    }
+
+    if (end % 1 === 0) {
+      count++
+    }
+
+    if (count % 2 === 1) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>
+
+<script id='977'>
+  //有序数组的平方
+
+  var sortedSquares = function (nums) {
+
+    var result = []
+
+    //求出最小绝对值的下标
+    var minIndex = 0
+    for (var i = 1; i < nums.length; i++) {
+      if (Math.abs(nums[minIndex]) > Math.abs(nums[i])) {
+        minIndex = i
+      }
+    }
+
+    result.push(nums[minIndex] ** 2)
+
+    var left = minIndex - 1
+    var right = minIndex + 1
+
+    while (left >= 0 && right <= nums.length - 1) {
+      if (Math.abs(nums[left]) < Math.abs(nums[right])) {
+        result.push(nums[left] ** 2)
+        left--
+      } else {
+        result.push(nums[right] ** 2)
+        right++
+      }
+    }
+
+    while (left >= 0) {
+      result.push(nums[left] ** 2)
+      left--
+    }
+
+    while (right <= nums.length - 1) {
+      result.push(nums[right] ** 2)
+      right++
+    }
+
+    return result
+  }
+</script>
+
+<script>
+
+  function parseQueryString(str) {
+    var a = str.split('&')
+    var obj = {}
+
+    for(var i = 0; i<a.length; i++) {
+      var c = a[0].split('=')
+      obj[a] =
+    }
+  }
+</script>
+
+<script>
+  function strtingify(obj) {
+    var result = "{"
+    for(var k in obj) {
+      result += obj[k]
+    }
+  }
+</script>
+
+<script>
+  
 </script>

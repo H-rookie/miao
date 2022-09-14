@@ -1,0 +1,104 @@
+<script src="./ancestry.js"></script>
+
+
+<script>
+  var ancestry = JSON.parse(ANCESTRY_FILE)
+
+  function filter(array, test) {
+    var result = []
+
+    for (var i = 0; i < array.length; i++) {
+      var item = array[i]
+      if (test(item, i, array)) {
+        result.push(item)
+      }
+    }
+
+    return result
+  }
+
+  filter([1, 2, 3, 4, 5], function (item, idx) {
+    return item > 3
+  })
+
+  function map(array, transform) {
+    var result = []
+
+    for (var i = 0; i < array.length; i++) {
+      var p = array[i]
+      result.push(transform(p, i, array))
+    }
+
+    return result
+  }
+
+  var overNinety = filter(ancestry, function (person) {
+    return person.died - person.born > 90
+  })
+
+  overNinety.map(function (p) {
+    return p.name
+  })
+
+  function map(array, transform) {
+    var result = []
+    for (var i = 0; i < array.length; i++) {
+      result.push(transform(array[i]))
+    }
+    return result
+  }
+
+
+  ///////找出最老的那个人
+
+  var ancent = ancestry[0]
+  for (var i = 1; i < ancestry.length; i++) {
+    // if(ancestry[i].born < ancent.born) {
+    //   ancent = ancestry[i]
+    // }
+    ancent = ancent.born < ancestry[i].born ? ancent : ancestry[i]
+  }
+  console.log(ancent);
+
+
+
+
+  function reduce(arr, reducer, initial) {
+    var result = initial
+    for (var i = 1; i < arr.length; i++) {
+      result = reducer(result, arr[i])
+    }
+    return result
+  }
+
+  reduce(ancestry, (result, item) => {
+    return result.born < item.born ? result : item
+  }, ancestry[0])
+
+
+  ///////找出男的和女的年龄平均值
+
+  var femaleCount = 0
+  var femaleTotal = 0
+  var maleCount = 0
+  var maleTotal = 0
+
+  for (var i = 0; i < ancestry.length; i++) {
+    var p = ancestry[i]
+    if(p.sex == 'f') {
+      femaleCount++
+      femaleTotal += p.died - p.born
+    } else {
+      maleCount++
+      maleTotal += p.died - p.born
+    }
+  }
+  console.log(femaleTotal / femaleCount)
+  console.log(maleTotal / maleCount)
+
+
+  function average(numbers) {
+    return numbers.reduce((a,b) => a+b) /numbers.length
+  }
+
+</script>

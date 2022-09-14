@@ -1,0 +1,342 @@
+<script>
+  function arrayToList(ary) {
+    if (ary.length === 0) {
+      return null
+    }
+
+    var nodes = []
+
+    // 把数组的每一个数都生成一个对象结点
+    for (var i = 0; i < ary.length; i++) {
+      var node = {
+        val: ary[i],
+        next: null,
+      }
+
+      nodes.push(node)
+    }
+
+    // 把nodes数组的每一个结点的next属性指向下一个结点
+    for (var i = 0; i < ary.length - 1; i++) {
+      nodes[i].next = nodes[i + 1]
+    }
+
+    return nodes[0]
+  }
+
+
+  function arrayToList2(ary) {
+    var dummyNode = { val: 0, next: 0, }
+    var prevNode = dummyNode
+
+    for (var i = 0; i < ary.length; i++) {
+      var node = {
+        val: ary[i],
+        next: null,
+      }
+
+      prevNode.next = node
+      prevNode = node  // 作为下一个圈的上一个结点
+    }
+
+    return dummyNode.next
+  }
+
+  function arrayToListR(ary) {
+
+    if (ary.length === 0) {
+      return null
+    }
+
+    var head = {
+      val: ary[0],
+      next: null,
+    }
+    var LeftAry = alice(1)
+
+    var LeftList = arrayToListR(LeftAry)
+    head.next = leftList
+
+    return head
+  }
+
+  function listToArray(list) {
+    var result = []
+
+    while (list) {
+      result.push(list.val)
+      var list = list.next
+    }
+
+    return result
+  }
+
+  //把list的所有结点的val放到数组里
+
+  //时间：n**n（递归执行了n次，次数就是list链表的长度，每一次都调用了       unshift，等同于一次就是循环了n次，往后挪）
+  //空间：n
+  function listToArrayR(list) {
+
+    if (!list) {
+      return []
+    }
+    var tail = list.next //除第一个结点以外的结点组成的‘尾巴’链表
+
+    // 将头结点和尾巴链表转换得到的数组连成一个大数组即为结果
+    // 而把尾巴链表转换得到的数组可以递归完成
+    var ary = listToArrayR(tail)
+    ary.unshift(list.val)
+
+    return ary
+  }
+
+  // 往链表list的前面增加一个新的结点，结点的值为val
+  function prepend(list, val) {
+    var node = {
+      val: val,
+      next: null
+    }
+
+    node.next = list
+    return node
+  }
+</script>
+
+
+
+<script>
+  function arrayToList(ary) {
+
+    if (ary.length === 0) {
+      return null
+    }
+
+    var nodes = []
+    for (var i = 0; i < ary.length; i++) {
+      var node = {
+        val: ary[i],
+        next: null,
+      }
+      nodes.push(node)
+    }
+
+    for (var i = 0; i < ary.length - 1; i++) {
+      nodes[i].next = nodes[i + 1]
+    }
+
+    return nodes[0]
+  }
+
+  function arrayToList2(ary) {
+
+    var dummyNode = { val: 0, next: null, }
+    var prevNode = dummyNode
+
+    for (var i = 0; i < ary.length; i++) {
+      var node = {
+        val: ary[i],
+        next: null,
+      }
+
+      prevNode.next = node
+      prevNode = node
+    }
+
+    return dummyNode.next
+  }
+
+  function listToArray(list) {
+
+    var result = []
+    while (list) {
+      result.push(list.val)
+      list = list.next
+    }
+
+    return result
+  }
+</script>
+
+<script>
+  // 往链表list的前面增加一个新的结点，结点的值为val
+  function prepend(list, val) {
+    var node = new ListNode()
+
+    return node
+  }
+
+  function arrayToList3(ary) {
+
+    var list = null
+    for (var i = ary.length - 1; i >= 0; i--) {
+      list = prepend(list, ary[i])
+    }
+
+    return list
+  }
+
+  // 返回链表第n个结点的值，没有返回undefined
+  function nth(list, n) {
+    if (n < 0) {
+      return undefined
+    }
+
+    var p = list
+
+    for (var i = 0; i < n && p; i++) {
+      p = p.next
+    }
+
+    if (p) {
+      return p.val
+    } else {
+      return undefined
+    }
+  }
+
+  function nthR(list, n) {
+
+    if (!list || n < 0) {
+      return undefined
+    }
+
+    if (n == 0) {
+      return list.val
+    }
+    var tail = list.next
+    return nthR(tail, n - 1)
+  }
+
+  function append(list, val) {
+
+    var node = new ListNode(val)
+
+    var p = list
+    if (!p) {
+      return node
+    }
+
+    // 只要p的下一个结点还存在，就继续（遍历到最后一项，而不是到最后一项的next）
+    while (p.next) {
+      p = p.next
+    }
+
+    p.next = node
+    return list
+  }
+
+  function appendR(list, val) {
+
+    return appendR(list.next, val)
+  }
+
+  function ListNode(val, next = null) {
+    return {
+      val: val,
+      next: null,
+    }
+
+    //this.val = val
+    //this.next = next
+  }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  function reverseList(head) {
+
+    var tail = head.next
+
+    var newHead = reverseList(tail)
+    while ()
+  }
+</script>
+
+<script>
+  var reverseList = function (head) {
+    if (head == null) {
+      return null
+    }
+    var a = null
+    var b = p
+    var c = p
+
+    while (b) {
+      c = c.next
+      b.next = a
+      a = b
+      b = c
+    }
+
+    return a
+  }
+</script>
+
+<script>
+  function mergeList(list1, list2) {
+    if(list1.val > list2.val) {
+      var tail = list2.next
+      list2.next = mergeList(list1, tail)
+
+      return list2
+    } else {
+      var tail = list1.next
+      list1.next = mergeList(list2, tail)
+
+      return list1
+    }
+  }
+
+  var sortList = function(head) {
+
+    //将链表一分为二
+    var count = 0
+    var p = head
+
+    while(p) {
+      p = p.next
+      count++
+    }
+
+    //对链表进行排序
+    var left = sortList(left)
+    var right = sortList(right)
+
+    //合并两链表
+    return mergeList(left, right)
+  }
+</script>
+
+<script>
+
+  function ForEach(array, action) {
+    for (var i=0; i<array.length; i++) {
+      action(array[i],i)
+    }
+  }
+
+  ForEach([1,2,3,4], function(val, idx) {
+    console.log(val,idx);
+  })
+
+  var sum = 0
+  ForEach([1,2,3,4], function f(val) {
+    sum += val
+  })
+
+  console.log(sum)
+</script>

@@ -89,5 +89,225 @@
 
 <script>
 
+    var tx = 3
+    var ty = 6
+    function find(x, y) {
 
+        var count = 0
+        if (tx == x && ty == y) {
+            return ++count
+        }
+
+        if (x > tx || y > ty) {
+            return
+        }
+
+        find(x + 1, y)
+        find(x, y + 1)
+    }
+
+</script>
+
+<script>
+    var target = 6
+
+    function Tofloor(x, history) {
+        if (x === target) {
+            console.log(history);
+            return 1
+        }
+
+        if (x > target) {
+            return
+        }
+
+        var x1 = x + 1
+        var h1 = history + '+1'
+        Tofloor(x1, history + '+1')
+
+        var x2 = x + 2
+        var h2 = history + '+2'
+        Tofloor(x + 2, history + '+2')
+    }
+</script>
+
+<script>
+
+    //history是一个字符串
+    var target = 24
+    function find(start, history) {
+        var count = 0
+        if (start === target) {
+            console.log(history)
+            return count++
+        }
+
+        if (start > target) {
+            return
+        }
+
+        var a = start * 3
+        var ah = '(' + history + ')' + ' * 3 '
+        var b = start + 5
+        var bh = '(' + history + ')' + ' + 5 '
+
+        return find(a, ah) //这个函数的作用就是将一个数和怎么得到的它每次*3和+5
+        return find(b, bh) //把b作为新的start数，bh作为新的history
+        //完全可以把调用的函数当做别的函数，只不过这个函数的功能和原函数相同
+
+        return count
+    }
+
+    function find1(start, history) {
+        var count = 0
+        if (start === target) {
+            console.log(history)
+            return 1
+        }
+
+        if (start > history) {
+            return
+        }
+
+        var a = start * 3
+        var ah = '(' + history + ')' + ' * 3 '
+        var b = start + 5
+        var bh = '(' + history + ')' + ' + 5 '
+
+        return find1(a, ah) //这个函数的作用就是将一个数和怎么得到的它每次*3和+5
+        returnfind1(b, bh) //把b作为新的start数，bh作为新的history
+    }
+</script>
+
+
+<script>
+
+    var tx = 3
+    var ty = 3
+    function chess(x, y, history) {
+        if (x === tx && y === ty) {
+            console.log(history)
+            return
+        }
+
+        if (x > tx || y > ty) {
+            return
+        }
+
+        chess(x + 1, y, history + '>')
+        chess(x, y + 1, history + '-top')
+    }
+</script>
+
+<script>
+    var target = 10
+    function floor(n, history) {
+        if (n === target) {
+            console.log(history)
+            return
+        }
+
+        if (n > target) {
+            return
+        }
+
+        var newx = n + 1
+        var hx = history + '+1'
+
+        var newy = n + 2
+        var hy = history + '+2'
+
+        floor(newx, hx)
+        floor(newy, hy)
+    }
+
+
+    var target = 10
+    function floor(n, history) {
+        var count = 0
+        if (n === target) {
+            count++
+            return count
+        }
+
+        if (n > target) {
+            return
+        }
+
+        var newx = n + 1
+        var hx = history + '+1'
+
+        var newy = n + 2
+        var hy = history + '+2'
+
+        count += floor(newx, hx)+ floor(newy, hy)
+        return count
+    }
+</script>
+
+<script>
+    //接受n个数并倒序输出
+    function inputReverseOutput(n) {
+
+        if (n === 0) {
+            return
+        }
+
+        var num = prompt()
+        inputReverseOutput(n - 1)
+        console.log(num)
+    }
+</script>
+
+
+
+
+<script>
+
+    // 把n个盘从开始位放到结束位
+    function hanoi(n, start, end) {
+
+        if (n === 1) {
+            console.log(start, '->', end)
+            return
+        }
+
+        var center = 6 - start - end  // 计算出中转位
+        hanoi(n - 1, start, center)   // 把n-1个盘从开始位放到中转位
+        console.log(start, '->', end) // 等价于hanoi(1, start, end), 把第n个盘从开始位放到结束位(程序自己移动不了，只能告诉你怎么移)
+        hanoi(n - 1, center, end)     // 把n-1个盘从中转位放到结束位
+    }
+
+    function hanoi(n, start, end, mid) {
+
+        if (n === 1) {
+            console.log(start, '->', end)
+            return
+        }
+
+        hanoi(n - 1, start, center, end)
+        console.log(start, '->', end)
+        hanoi(n - 1, center, end, start)
+    }
+</script>
+
+<script>
+
+输出从n阶到1阶有多少种方法
+
+输出从n-1
+
+
+
+function Tofloor(n) {
+
+    var count = 0
+    if(n === 1) {
+        return
+    }
+
+    Tofloor(n-1)
+
+    return count +
+}
 </script>

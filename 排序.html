@@ -1,0 +1,469 @@
+<script>
+  //生成数组长度为n的随机数组成的数组
+  function randomArray(n) {
+    var arr = []
+    for (var i = 0; i < n; i++) {
+      arr.push(Math.random() * n | 0)  //随机数是0-1之间的数，*n保证的n的范围内
+    }
+    return arr
+  }
+
+
+  function isSorted(ary) {
+    for (var i = 0; i < ary.length; i++) {
+      if (ary[i] > ary[i + 1]) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+
+
+  function bubbleSort(array) {
+
+    for (var j = array.length - 1; j > 0; j--) {
+
+      var flag = 0
+      for (var i = 0; i < j; i++) {
+        if (array[i] > array[i + 1]) {
+          flag = 1
+          var t = array[i]
+          array[i] = array[i + 1]
+          array[i + 1] = t
+        }
+      }
+
+      if (!flag) {
+        return array
+      }
+    }
+
+    return array
+  }
+
+
+  function selectSort(array) {
+
+    //起点位置
+    for (var i = 0; i < array.length - 1; i++) {
+
+      var minIndex = i
+      for (var j = i + 1; j < array.length; j++) {
+        if (array[j] < array[minIndex]) {
+          minIndex = j
+        }
+      }
+
+      var t = array[i]
+      array[i] = array[minIndex]
+      array[minIndex] = t
+    }
+    return array
+  }
+
+  function insertSort(arr) {
+
+    for (var j = 1; j < arr.length; j++) {
+
+
+      //将数组排序，比它大的往后挪
+      var value = arr[j]
+      for (var i = j - 1; i >= 0; i--) {
+        if (arr[i] >= value) { //如果当前的这个数比value大，就往后挪一位
+          arr[i + 1] = arr[i]
+        } else {
+          break  //前面是有序的，一旦遇到一个数不比它大的，就应该停了
+        }
+      }
+      arr[i + 1] = value //挪完再放进空出的位置
+    }
+
+    return arr
+  }
+
+  function mergeSort(arr) {
+
+    if (arr.length < 2) {
+      return arr
+    }
+    //拆分
+    var middle = arr.length / 2 | 0
+    var left = arr.slice(0, middle)
+    var right = arr.slice(middle)
+
+    //排序
+    mergeSort(left)
+    mergeSort(right)
+
+
+    //合并
+    var i = 0
+    var j = 0
+    var k = 0
+
+    while (i < left.length && j < right.length) {
+      if (left[i] < right[j]) {
+        arr[k] = left[i]
+        k++
+        i++
+      } else {
+        arr[k] = right[j]
+        k++
+        j++
+      }
+    }
+
+    while (i < left.length) {
+      arr[k] = left[i]
+      k++
+      i++
+    }
+
+    while (j < right.length) {
+      arr[k] = right[j]
+      k++
+      j++
+    }
+
+    //返回
+    return arr
+  }
+
+
+  function quickSort(arr) {
+
+    if (arr.length < 2) {
+      return arr.slice()
+    }
+
+    //随机选一个数(下标在范围内随机)
+    var num = arr.at(Math.random() * arr.length | 0)
+
+    //基于选的数进行分组
+    var left = []
+    var right = []
+    var middle = []
+    for (var i = 0; i < arr.length; i++) {
+      if (num == arr[i]) {
+        middle.push(arr[i])
+      } else if (num < arr[i]) {
+        right.push(arr[i])
+      } else {
+        left.push(arr[i])
+      }
+    }
+
+    //对大于和小于的进行排序
+    var leftSort = quickSort(left)
+    var rightSort = quickSort(right)
+
+    //合并并返回
+    return leftSort.concat(middle, rightSort)
+  }
+</script>
+
+<script>
+  //最大子串和
+  function maxSum(arr) {
+    if (arr.length === 0) {
+      return 0
+    }
+
+    if (arr.length === 1) {
+      return arr[0]
+    }
+
+    var mid = Math.floor(arr.length / 2)
+    var leftArr = arr.slice(0, mid)
+    var rightArr = arr.slice(mid)
+
+    var leftMax = maxSum(leftArr)  //左半边最大的子串和
+    var rightMax = maxSum(rightArr)
+
+    var midLeftMax = 0
+    var midLeftSum = 0
+    for (var i = leftArr.length - 1; i >= 0; i--) {
+      midLeftSum += leftArr[i]
+
+      if (midLeftSum > midLeftMax) {
+        midLeftMax = midLeftSum
+      }
+    }
+
+    var midRightMax = 0
+    var midRightSum = 0
+    for (var i = 0; i < rightArr.length; i++) {
+      midRightSum += rightArr[i]
+
+      if (midRightSum > midRightMax) {
+        midRightMax = midRightSum
+      }
+    }
+
+    var midMax = midLeftMax + midRightMax
+
+    return Math.max(leftMax, rightMax, midMax)
+  }
+</script>
+
+
+<script>
+  function swap(arr, start, end) {
+    var t = arr[start]
+    arr[start] = arr[end]
+    arr[end] = t
+  }
+
+  //对数组arr的start位置到end位置进行排序
+  function qSort(arr, start = 0, end = arr.length - 1) {
+
+    if (start >= end) {
+      return arr
+    }
+
+    var pivotIndex = Math.floor(Math.random() * (end - start + 1)) + start
+    var pivot = arr.at(pivotIndex)
+
+    swap(arr, pivotIndex, end)
+
+    var i = start
+    for (var j = start; j < end; j++) {
+      if (arr[j] < pivot) {
+        swap(arr, j, i)
+        i++
+      }
+    }
+
+    swap(arr, i, j)
+
+    qSort(arr, start, i - 1)
+    qSort(arr, i + 1, end)
+
+    return arr
+  }
+
+  function qSort2(arr, start = 0, end = arr.length - 1) {
+
+    //当元素只有一个元素时，也就是start = end时，没必要排序了
+    if (start >= end) {
+      return arr  //假设你输入的那个数组只有一个数，还是得返回数组本身
+    }
+
+    //哨兵元素的下标
+    var pivotIndex = Math.floor(Math.random() * (end - start + 1)) + start
+    //哨兵元素的值
+    var pivot = arr.at(pivotIndex)
+
+    //将哨兵元素放到末尾
+    swap(arr, pivotIndex, end)
+
+    var i = start
+    var j = start
+    for (var k = start; k < end; k++) {
+      if (arr[k] < pivot) {
+        var temp = arr[k]
+        arr[k] = arr[j]
+        arr[j] = arr[i]
+        arr[i] = temp
+        i++
+        j++
+      } else if (arr[k] === pivot) {
+        swap(arr, k, j)
+        j++
+      }
+    }
+
+    swap(arr, k, j)
+
+    qSort2(arr, start, i - 1)
+    qSort2(arr, j + 1, end)
+
+    return arr
+  }
+</script>
+
+<script>
+  function qSortReview(arr, start = 0, end = arr.length - 1) {
+
+    if (start >= end) {
+      return arr
+    }
+
+    var pivotIndex = Math.floor(Math.random() * (end - start + 1)) + start
+    var pivot = arr[pivotIndex]
+
+    swap(arr, pivotIndex, end)
+    var i = start
+    var j = start
+    var k = start
+
+    for (; k < end; k++) {
+      if (arr[k] < pivot) {
+        var temp = arr[k]
+        arr[k] = arr[j]
+        arr[j] = arr[i]
+        arr[i] = temp
+        i++
+        j++
+      } else if (arr[k] === pivot) {
+        swap(arr, j, k)
+        j++
+      }
+    }
+
+    swap(arr, j, k)
+
+    qSortReview(arr, start, i - 1)
+    qSortReview(arr, j + 1, end)
+
+    return arr
+  }
+</script>
+
+
+<script>
+  function deepEqual(a, b) {
+    //当是同一个对象或数组时返回true
+    if (a === b) {
+      return true
+    }
+
+    //判断是不是NaN
+    if (a !== a && b !== b) {
+      return true
+    }
+
+    //判断是不是数组
+    if (Array.isArray(a) && Array.isArray(b)) {
+      if (a.length !== b.length) {
+        return false
+      } else {
+        for (var i = 0; i < a.length; i++) {
+          if (!deepEqual(a[i], b[i])) {
+            return false
+          }
+        }
+        return true
+      }
+    }
+
+    if (a && b && typeof a === typeof b && !Array.isArray(a) && !Array.isArray(b)) {
+      if (objLength(a) !== objLength(b)) {
+        return false
+      }
+
+      for (var k in a) {
+        if (!(k in b)) {
+          return false
+        }
+
+        if (a[k] !== b[k]) {
+          return false
+        }
+      }
+
+      return true
+    }
+
+    return a === b
+  }
+
+  function objLength(obj) {
+    var count = 0
+    for (var k in obj) {
+      count++
+    }
+    return count
+  }
+</script>
+
+<script id='3'>
+  //无重复字符的最长子串
+  function lengthOfLongestSubstring(s) {
+
+    var map = {}
+    var max = 0 //记录最长子串长度
+    var currentLength = 0
+    var j = 0  //双指针，用来记录长度
+    for (var i = 0; i < s.length; i++) {
+      var code = s[i]
+      if (!(code in map)) {
+        map[code] = 0
+      }
+      map[code]++
+
+      if (map[code] === 2) {
+
+        while (j < i) {
+          var jcode = s[j]
+          map[jcode]--
+          j++
+
+          if (map[code] === 1) {
+            break
+          }
+        }
+
+      } else {
+        currentLength = i - j
+        if (currentLength > max) {
+          max = currentLength
+        }
+      }
+    }
+
+    return max
+  }
+</script>
+
+<script>
+  //最大子数组和
+
+  function maxSubArraySum(arr) {
+
+    var maxSum = 0
+    var currentSum = 0
+    for (var i = 0; i < arr.length; i++) {
+
+      if (arr[i] < 0) {
+        currentSum += arr[i]
+
+        if (currentSum < 0) {
+          currentSum = 0
+        }
+      } else {
+        currentSum += arr[i]
+        if (currentSum > maxSum) {
+          maxSum = currentSum
+        }
+      }
+    }
+
+    return maxSum
+  }
+</script>
+
+
+<script>
+  function threeSelected(arr) {
+    var left = 0
+    var right = arr.length -1
+    var center = (left + right) / 2 | 0
+
+    if(arr[left] > arr[center]) {
+      swap(arr,left,center)
+    }
+
+    if(arr[center] > arr[right]) {
+      swap(arr,center,right)
+    }
+
+    if(arr[left] > arr[center]) {
+      swap(arr,center,left)
+    }
+
+    return arr[center]
+  }
+</script>

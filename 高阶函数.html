@@ -1,0 +1,234 @@
+<script>
+
+  function forEach(array, action) {
+    for (var i = 0; i < array.length; i++) {
+      action(array[i], i, array)
+    }
+  }
+
+  forEach([1, 23, 4, 5], function (items, index, arr) {
+    console.log(items, index, arr[index + 1])
+  })
+</script>
+
+
+<script>
+
+  //相对于给f函数再包了一层，里面的函数就是f函数，但可以比f原函数多一些其他的功能
+  function noisy(f) {
+    return function (arg) {
+      return f(arg)
+    }
+  }
+</script>
+
+<script>
+  function parseQueryString(str) {
+    var obj = {}
+    var pairs = str.split('&')
+
+    pairs.forEach(function (p) {
+      var [key, val] = p.split('=')
+
+      if (key in obj) {
+        if (!Array.isArray(obj[key])) {
+          obj[key] = [obj[key]]  //如果遇到第二次，就地建个数组，值是之前的那个，下步再把val值push进去
+          //此处的obj[key]和val不相等
+        }
+        obj[key].push(val)
+      } else {
+        obj[key] = val
+      }
+    })
+    return obj
+  }
+</script>
+
+<script>
+  function strtingify(value) {
+    if (value && typeof value == 'object') {
+
+      if (Array.isArray(value)) {
+
+        var result = '['
+        for (var i = 0; i < value.length; i++) {
+          result += strtingify(value[i])
+
+          if (i < value.length - 1) {
+            result += ','
+          }
+        }
+        result += ']'
+        return result
+      } else {
+        var result = '{'
+
+        for (var k in value) {
+          result += '"' + k + '"' + ':' + strtingify(value[k]) + ','
+        }
+        result = result.slice(0, -1)
+        result += '}'
+        return result
+      }
+    } else {
+      if (typeof value == 'string') {
+        return '"' + value + '"'
+      } else {
+        return String(value)
+      }
+    }
+  }
+
+  var a = {
+    name: 1,
+    value: 2,
+    b: { ha: 3, be: 4 }
+  }
+</script>
+
+<script>
+
+  function reduce(ary, reducer, initinal) {
+
+    var sum = 0//var result = 1
+    var max = -Infinity
+
+    if (initinal == undefined) {
+      initinal = ary[0]
+    }
+
+    var obj = {}
+    for (var i = 1; i < ary.length; i++) {
+      sum += ary[i] //result*= ary[i]
+
+      sum = reducer(sum, ary[i], i, ary)
+
+      max = ary[i] > max ? ary[i] : max
+
+      obj[ary[i]] = i
+    }
+
+    return sum
+  }
+
+  reduce([11, 22, 33], (result, item) => result + item, 0)
+
+
+  //////
+
+  function reduce(array, reducer, initial) {
+    var result = initial
+    var start = 0
+    if (initial == undefined) {
+      result = array[0]
+      start = 1
+    }
+    for (var i = start; i < array.length; i++) {
+      result = reducer(result, array[i])
+    }
+    return result
+  }
+
+  reduce([1, 2, 3, 4, 5], (result, item) => {
+    return result + item
+  })
+
+  //////
+
+  function every(ary, predicate) {
+    for (var i = 0; i < ary.length; i++) {
+      var p = ary[i]
+      if (!predicate(p, i, ary)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  function some(ary, predicate) {
+    for (var i = 0; i < ary.length; i++) {
+      var p = ary[i]
+      if (predicate(p, i, ary)) {
+        return true
+      }
+    }
+    return false
+  }
+
+
+  function find(ary, predicate) {
+    for (var i = 0; i < ary.length; i++) {
+      var p = ary[i]
+      if (predicate(p, i, ary)) {
+        return p
+      }
+    }
+    return false
+  }
+
+  function reduce(ary, reducer, initial) {
+    result = 0
+    for (var i = 0; i < ary.length; i++) {
+      result = reducer(result, ary[i])
+    }
+
+    return result
+  }
+
+  reduce(ary, (result, item) => result+item,0)
+  reduce(ary, (result, item) => result && f(item),0)
+
+  function every(ary, predicate) {
+    return ary.reduce((result, item) => {
+      result && predicate(item)
+    },true)
+  }
+
+
+  ////////
+
+  function flatten(ary) {
+    var result = []
+    ary.reduce(function (x, item) {
+      if(Array.isArray(item)) {
+        result = result.concat(flatten(item))
+      } else {
+        result = result.concat(item)
+      }
+    }, 1)
+
+    return result
+  }
+
+
+  function flatten(ary) {
+    var result = []
+
+    for(var i= 0; i<ary.length; i++) {
+      if(Array.isArray(ary[i])) {
+        result = result.concat(flatten(ary[i]))
+      } else {
+        result = result.concat(ary[i])
+      }
+    }
+
+    return result
+  }
+
+  function flatten(ary) {
+    var result = []
+
+    for(var i= 0; i<ary.length; i++) {
+        result = result.concat(ary[i])
+    }
+    return result
+  }
+
+  function flatten(ary) {
+    return ary.reduce((result, item) => result.concat(item),[])
+  }
+
+
+  flatten = ary => ary.reduce((result, item) => result.concat(item),[])
+
+</script>
