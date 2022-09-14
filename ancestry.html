@@ -85,7 +85,7 @@
 
   for (var i = 0; i < ancestry.length; i++) {
     var p = ancestry[i]
-    if(p.sex == 'f') {
+    if (p.sex == 'f') {
       femaleCount++
       femaleTotal += p.died - p.born
     } else {
@@ -98,7 +98,16 @@
 
 
   function average(numbers) {
-    return numbers.reduce((a,b) => a+b) /numbers.length
+    return numbers.reduce((a, b) => a + b) / numbers.length
   }
 
+
+  ///////
+  ancestry.map(p => {
+    var motherName = p.mother
+    var motherObject = ancestry.find(it => it.name == motherName)
+    return motherObject
+  })
+
+  ancestry.filter(p => {return p.mother }).map(it => it.born - it.mother.born)
 </script>

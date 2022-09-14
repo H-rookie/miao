@@ -175,13 +175,13 @@
     return result
   }
 
-  reduce(ary, (result, item) => result+item,0)
-  reduce(ary, (result, item) => result && f(item),0)
+  reduce(ary, (result, item) => result + item, 0)
+  reduce(ary, (result, item) => result && f(item), 0)
 
   function every(ary, predicate) {
     return ary.reduce((result, item) => {
       result && predicate(item)
-    },true)
+    }, true)
   }
 
 
@@ -190,7 +190,7 @@
   function flatten(ary) {
     var result = []
     ary.reduce(function (x, item) {
-      if(Array.isArray(item)) {
+      if (Array.isArray(item)) {
         result = result.concat(flatten(item))
       } else {
         result = result.concat(item)
@@ -204,8 +204,8 @@
   function flatten(ary) {
     var result = []
 
-    for(var i= 0; i<ary.length; i++) {
-      if(Array.isArray(ary[i])) {
+    for (var i = 0; i < ary.length; i++) {
+      if (Array.isArray(ary[i])) {
         result = result.concat(flatten(ary[i]))
       } else {
         result = result.concat(ary[i])
@@ -218,17 +218,23 @@
   function flatten(ary) {
     var result = []
 
-    for(var i= 0; i<ary.length; i++) {
-        result = result.concat(ary[i])
+    for (var i = 0; i < ary.length; i++) {
+      result = result.concat(ary[i])
     }
     return result
   }
 
+  //完整版本
   function flatten(ary) {
-    return ary.reduce((result, item) => result.concat(item),[])
+    return ary.reduce((result, item) => {
+      if (Array.isArray(item)) {
+        return result.concat(flatten(item))
+      }
+      return result.concat(item)
+    }, [])
   }
 
 
-  flatten = ary => ary.reduce((result, item) => result.concat(item),[])
+  flatten = ary => ary.reduce((result, item) => result.concat(item), [])
 
 </script>
