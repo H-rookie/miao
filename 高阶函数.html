@@ -237,4 +237,104 @@
 
   flatten = ary => ary.reduce((result, item) => result.concat(item), [])
 
+
+
+  /////////
+  //byName
+
+  var byName = {}
+
+  for (var i = 0; i < ancestry.length; i++) {
+    byName[ancestry[i].name] = ancestry[i]
+
+    // byName = byName[ancestry[i].name] = ancestry[i], byName
+  }
+
+  console.log(byName)
+
+
+
+  function keyby(ary, propName) {
+    var result = {}
+    for (var i = 0; i < ary.length; i++) {
+      result[ary[i][propName]] = ary[i]
+    }
+    return result
+  }
+
+
+  function keyby(ary, 计算key值的函数) {
+    var result = {}
+    for (var i = 0; i < ary.length; i++) {
+      var key = 计算key值的函数(ary[i])
+      result[key] = ary[i]
+    }
+    return result
+  }
+
+  function keyby(ary, 计算key值的函数) {
+
+    if(typeof 计算key值的函数 == 'string') {
+      计算key值的函数 = it => it[计算key值的函数]
+    }
+    var result = {}
+    for (var i = 0; i < ary.length; i++) {
+      var key = 计算key值的函数(ary[i])
+      result[key] = ary[i]
+    }
+    return result
+  }
+
+
+  var byName = ancestry.reduce((obj, people) => {
+    obj[people.name] = people
+    return obj
+  }, {})
+
+  ancestry.forEach(it => {
+    it.id = Math.random() * 1000000 | 0
+  })
+
+
+  function groupBy(ary, 计算分组名称的函数) {
+
+    var result = {}
+    for (var i = 0; i < ary.length; i++) {
+      var p = ary[i]
+      var groupName = 计算分组名称的函数(p)
+      if(!(groupName in result)) {
+        result[groupName] = []
+      }
+      result[groupName].push(p)
+    }
+    return result
+  }
+
+
+  var grouped = groupBy(ancestry, it => Math.ceil(it.born / 100))
+
+  var avgAgeBycent = {}
+
+  for(var cent in grouped) {
+    var centPerson = grouped[cent]
+    var value = average( centPerson.map(it => it.died - it.born) )
+    avgAgeBycent[cent] = value
+  }
+
+  return avgAgeBycent
+
+  function average(numbers) {
+    return numbers.reduce((a,b) => a+b) / numbers.length
+  }
+
+
+  function mapObject(obj, mapper) {
+    var result = {}
+
+    for(var key in obj) {
+      result[key] = mapper(obj[key])
+    }
+
+    return result
+  }
 </script>
