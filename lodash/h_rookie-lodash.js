@@ -40,13 +40,17 @@ var h_rookie = function () {
   }
 
   function compact(array) {
+    var newAry = []
     for (var i = 0; i < array.length; i++) {
       var item = array[i]
-      if (item === false || item === null || item === 0 || item === '' || item === undefined || item !== item) {
-        array.splice(i, 1)
+      if (item !== item) { //NaN要单独判断，不然任意数都返回假
+        continue
+      }
+      if (item != false && item != undefined) {  // ==false 的有0，false,''
+        newAry.push(item)
       }
     }
-    return array
+    return newAry
   }
 
   function fill(array, value, start = 0, end = array.length) {
@@ -59,12 +63,7 @@ var h_rookie = function () {
 
 
   function drop(array, n = 1) {
-    for (var i = 0; i < array.length; i++) {
-      if (i == n) {
-        return array
-      }
-      array.shift()
-    }
+    return array.slice(n)
   }
 
 
@@ -83,7 +82,7 @@ var h_rookie = function () {
 
   function findLastIndex(array, predicate, start = array.length - 1) {
 
-    for (var i = start; i <= 0; i--) {
+    for (var i = start; i >= 0; i--) {
       var p = array[i]
       var judgeType = judge(predicate)
       if (judgeType(p)) {
@@ -152,7 +151,7 @@ var h_rookie = function () {
     for (var i = 0; i < array.length; i++) {
       var item = array[i]
       if (Array.isArray(item)) {
-        result = result.concat(flatten(item))
+        result = result.concat(flattenDeep(item))
       } else {
         result = result.concat(item)
       }
@@ -263,8 +262,8 @@ var h_rookie = function () {
   function every(array, predicate) {
     for (var i = 0; i < array.length; i++) {
       var item = array[i]
-      var result = judge(predicate, item)
-      if (!result) {
+      var judgeType = judge(predicate)
+      if (!judgeType(item)) {
         return false
       }
     }
@@ -274,8 +273,8 @@ var h_rookie = function () {
   function some(array, predicate) {
     for (var i = 0; i < array.length; i++) {
       var item = array[i]
-      var result = judge(predicate, item)
-      if (result) {
+      var judgeType = judge(predicate)
+      if (judgeType(item)) {
         return true
       }
     }
@@ -360,7 +359,7 @@ var h_rookie = function () {
 
   function keyBy(array, predicate) {
     array.forEach(it => {
-
+      
     })
   }
 
